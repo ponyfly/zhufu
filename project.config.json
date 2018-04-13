@@ -1,0 +1,53 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "wx6b61571b20b0c664",
+	"projectname": "zhufu",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "填写祝福",
+					"pathName": "pages/writetheme/writetheme",
+					"query": "templateId=1"
+				},
+				{
+					"id": 1,
+					"name": "卡片列表",
+					"pathName": "pages/cardlist/cardlist",
+					"query": "wishId=70&wishTemplateId=1&wishThemeImgUrl=https://timg"
+				}
+			]
+		}
+	}
+}

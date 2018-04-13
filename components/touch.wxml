@@ -1,0 +1,11 @@
+<!--share.wxml-->
+<view class="top" style="height:200rpx;"></view>
+<view class="banner-wrap">
+	<view class="banner">
+		<block class="t" wx:for="{{bannerList}}" wx:key="{{index}}">
+			<view class="banner-item {{index == bannerIndex ? 'banner-item-act': index > bannerIndex ? 'banner-item-right' : 'banner-item-left'}}" style="left:{{indexPositoin-(bannerIndex-index)*6}}%; z-index:{{bannerIndex<index ? 999- (index-bannerIndex): ''}}" data-index="{{index}}">{{item}}</view>
+		</block>
+	</view>
+	<image src="/static/img/left@2x.png" class="left" bindtap="preIndex" wx:if="{{bannerIndex > 3}}"></image>
+	<image src="/static/img/right@2x.png" class="right" bindtap="nextIndex" wx:if="{{bannerList.length - bannerIndex > 4}}"></image>
+</view>

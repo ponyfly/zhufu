@@ -1,0 +1,56 @@
+
+  <view class="container">
+    <view class="list-wrap" wx:if="{{!isShowWrite}}">
+      <view class="head">
+        <image src="/static/img/bg-head@2x.png" alt="" class="head-bg"></image>
+        <view class="creater">
+          <image src="/static/img/star@2x.png" alt="" class="star"></image>
+          <view class="content">
+            本次祝福由<text class="creater-name">默默</text>发起
+          </view>
+          <image src="/static/img/star@2x.png" alt="" class="star"></image>
+        </view>
+        <view class="cards-num">
+          <image src="/static/img/icon-1@2x.png" alt="" class="num-bg"></image>
+          <view class="num">
+            <view class="num-title">祝福数</view>
+            <view class="bum-content">6/365</view>
+          </view>
+        </view>
+      </view>
+      <view class="content-wrap">
+        <include src="/components/touch.wxml"></include>
+        <button bindtap="preIndex">上一个</button>
+        <button bindtap="nextIndex">下一个</button>
+        <view class="joiner-container">
+          <view class="scroll-content">
+            <view class="scroll-item">
+              <image src="/static/img/joiner@2x.png" alt="" class="joiner-pic"></image>
+              <view class="joiner-name">小乔</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="submit-wrap">
+        <image class="submit-bg" src="/static/img/bg-bottom2@2x.png" alt=""></image>
+        <view class="submit-content">
+          <image src="/static/img/create.png" alt="" class="create-wish" bindtap="createWish"></image>
+          <image src="/static/img/join-wish@2x.png" alt="" class="submit-icon" bindtap="joinWish"></image>
+          <image src="/static/img/share.png" alt="" class="share-wish" bindtap="shareWish"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="wish-type" wx:if="{{isShowType}}" bindtap="closeWishType">
+    <view class="type-wrap" catchtap="stopPop">
+      <view class="type-title">选择祝福类型</view>
+      <view class="type-list" bindtap="toWriteWish">
+        <image id="1" src="/static/img/wishtype-1@2x.png" class="type-item"></image>
+        <image id="2" src="/static/img/wishtype-2@2x.png" class="type-item"></image>
+        <image id="3" src="/static/img/wishtype-3@2x.png" class="type-item"></image>
+        <image id="4" src="/static/img/wishtype-4@2x.png" class="type-item"></image>
+      </view>
+    </view>
+  </view>
+  <include src="/components/typewish.wxml"></include>
+  <include src="/components/auth.wxml"></include>

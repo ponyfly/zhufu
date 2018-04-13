@@ -1,0 +1,126 @@
+
+.container {
+  position: fixed;
+  top:0;
+  right:0;
+  bottom: 0;
+  left:0;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAAABCAMAAAC2TtuGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMTgwMTE3NDA3MjA2ODExODA4M0JEMDhCNzBGM0FBMCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpDQUIyOTlFMDNCRkIxMUU4OTE2MDhFQTYxOTE3RTA0QiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpDQUIyOTlERjNCRkIxMUU4OTE2MDhFQTYxOTE3RTA0QiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjIxQzgwNTUzMzIwNjgxMTgyMkFBODk4NDJCMDk1MTAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDE4MDExNzQwNzIwNjgxMTgwODNCRDA4QjcwRjNBQTAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz448CzOAAAABlBMVEW7hmytd2UWOuMlAAAAIElEQVR42mJghAAGVMCICaihgk7WDBqHjAbrILMGIMAAajoBpVj/BOoAAAAASUVORK5CYII=) repeat-y;
+  background-size: 100%;
+}
+.container .head {
+  width: 100%;
+  height: 175rpx;
+  position: relative;
+}
+.container .head .head-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+.container .head .cake-wrap {
+  width: 126rpx;
+  height: 96rpx;
+  position: absolute;
+  z-index: 2;
+  left: 313rpx;
+  top: 63rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .head .cake-wrap .cake-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.container .head .cake-wrap .cake {
+  width: 51rpx;
+  height: 59rpx;
+  position: relative;
+  z-index: 3;
+  top: -5rpx;
+}
+.container .content-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .content-wrap .content {
+  width: 523rpx;
+  height: 684rpx;
+  background-color: #fff;
+  box-shadow: 20rpx 6rpx 50rpx 10rpx rgba(0,0,0,0.4);
+  border-top-right-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  position: relative;
+}
+.container .content-wrap .content .card-bg {
+  width: 523rpx;
+  height: 684rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.container .content-wrap .content .card-desc {
+  position: absolute;
+  top: 360rpx;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #553737;
+}
+.container .content-wrap .content .inputarea {
+  position: absolute;
+  top: 408rpx;
+  left: 72rpx;
+  z-index: 2;
+  width: 378rpx;
+  height: 90rpx;
+  border: 2rpx solid #5f3f08;
+  border-radius: 8rpx;
+  background-color: #ffd0d1;
+  font-size: 30rpx;
+  color: #f5989a;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.container .content-wrap .content .inputarea::-webkit-input-placeholder {
+  color: #f5989a;
+}
+.container .submit-wrap {
+  position: fixed;
+  bottom:0;
+  width: 100%;
+  height: 215rpx;
+}
+.container .submit-wrap .submit-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.container .submit-wrap .submit-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -72rpx;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 86rpx;
+  box-sizing: border-box;
+}
+.container .submit-wrap .submit-content .submit-icon {
+  width: 214rpx;
+  height: 214rpx;
+}

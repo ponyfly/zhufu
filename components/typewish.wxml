@@ -1,0 +1,63 @@
+
+  <view class="card-container" wx:if="{{typeId != -1}}">
+    <view class="head">
+      <image src="/static/img/bg-04.png" alt="" class="head-bg"></image>
+      <view class="creater">
+        <image src="/static/img/star@2x.png" alt="" class="star"></image>
+        <view class="content">
+          本次祝福由<text class="creater-name">默默</text>发起
+        </view>
+        <image src="/static/img/star@2x.png" alt="" class="star"></image>
+      </view>
+    </view>
+    <view class="content-wrap">
+      <view class="common-bg bg-1"></view>
+      <view class="common-bg bg-2"></view>
+      <view class="common-bg bg-3"></view>
+      <view class="common-bg bg-4">
+        <view class="word-container" wx:if="{{typeId == 1}}">
+          <image class="theme-temp" src="/static/img/word-temp.png" alt=""></image>
+          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <textarea name="wishcontent" id="wisharea" cols="30" rows="10" maxlength="200" placeholder="输入你的祝福" wrap="hard" value="{{wordContent}}" bindinput="setContent"></textarea>
+          <view class="desc">（ 最多可输入200字 )</view>
+        </view>
+        <view class="audio-container" wx:if="{{typeId == 2}}">
+          <image class="audio-icon" src="/static/img/audio-1@2x.png" alt=""></image>
+          <image class="theme-temp" src="/static/img/bg-temp1.png" alt=""></image>
+          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <image wx:if="{{isStart}}" class="audio-start" src="/static/img/audio-2@2x.png" alt="" bindtouchstart="startRecord" bindtouchend="stopRecord"></image>
+          <view wx:if="{{!isStart}}" class="audio-end">
+            <view class="re-record common-circle" bindtap="reRecord">重录</view>
+            <view class="audition common-circle" bindtap="tryListen">试听</view>
+          </view>
+        </view>
+        <view class="video-container" wx:if="{{typeId == 3}}">
+          <image class="theme-temp" src="/static/img/video-temp.png" alt=""></image>
+          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <view class="video-common">
+            <image class="video-bg" src="/static/img/video-01.png" alt=""></image>
+            <view class="upload-video"></view>
+          </view>
+        </view>
+        <view class="photo-container" wx:if="{{typeId == 4}}">
+          <image class="theme-temp" src="/static/img/photo-temp.png" alt=""></image>
+          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <view class="photo-common">
+            <image class="photo-bg" src="/static/img/photo-01.png" alt=""></image>
+            <view class="upload-photo" bindtap="chooseImage"></view>
+          </view>
+        </view>
+        <!--<typeaudio @getTempFilePath="getTempFilePath" :isAfterWirte.sync="isAfterWirte"></typeaudio>-->
+        <!--<typeword @getTypeWord="getTypeWord"></typeword>-->
+        <!--<typevideo></typevideo>-->
+        <!--<typeword></typeword>-->
+      </view>
+    </view>
+    <view class="bottom">
+      <image src="/static/img/bg-03.png" class="bg-bottom"></image>
+      <view class="form-area">
+        <image src="/static/img/cancel@2x.png" alt="" class="form-btn cancel" bindtap="hideType"></image>
+        <image src="{{isAfterWirte ? '/static/img/confirm-2@2x.png' : '/static/img/confirm@2x.png'}}" alt="" class="form-btn confirm" bindtap="uploadCard"></image>
+      </view>
+    </view>
+  </view>
