@@ -4,7 +4,9 @@ const API = util.API
 module.exports.data = {
   typeId: -1,
   wordContent: '',
-  imgUrl: ''
+  dataUrl: '',
+  isAfterWrite: false,
+  isStart: true
 }
 
 module.exports.methods = {
@@ -12,6 +14,8 @@ module.exports.methods = {
     const me = this
     const d = me.data
     d.typeId = -1
+    d.wordContent = ''
+    d.dataUrl = ''
     me.setData(d)
   },
   setContent(e) {
@@ -19,6 +23,9 @@ module.exports.methods = {
     const d = me.data
     console.log(e)
     d.wordContent = e.detail.value
+    if(d.wordContent) {
+      d.isAfterWrite = true
+    }
     me.setData(d)
   },
   uploadCard() {
@@ -29,7 +36,7 @@ module.exports.methods = {
       openId: wx.getStorageSync('openId'),
       owerHeadPic: userInfo.avatarUrl,
       ownerName: userInfo.nickName,
-      wishTemplateId: d.templateId,
+      wishTemplateId: d.wishTemplateId,
       wishid: d.wishId,
       wishText: '',
       wishType: '',
@@ -72,13 +79,14 @@ module.exports.methods = {
       data: config,
       success: res => {
         console.log(res)
+        d.isAfterWrite = false
+        me.setData(d)
         //把卡片塞到卡片列表中
       },
       complete: () =>{
         wx.hideLoading()
       }
     })
-
     me.setData(d)
   },
 
@@ -90,48 +98,70 @@ module.exports.methods = {
       title:'正在生成卡片'
     })
     config.wishType = "img"
-    config.wishUrl = ""
 
-
-    wx.request({
-      url: API.buildCard,
-      method: 'POST',
-      data: config,
-      success: res => {
-        console.log(res)
-        //把卡片塞到卡片列表中
-      },
-      complete: () =>{
-        wx.hideLoading()
-      }
+    me.fileUpload(d.dataUrl, {
+      keys: '',
+      mimeType: 'image',
+      suffixes: 'png,jpg,jpeg'
+    }, function (res) {
+      console.log(res)
+      config.wishUrl = res.resUrl
+      wx.request({
+        url: API.buildCard,
+        method: 'POST',
+        data: config,
+        success: res => {
+          console.log(res)
+          d.isAfterWrite = false
+          me.setData(d)
+          //把卡片塞到卡片列表中
+        },
+        complete: () =>{
+          wx.hideLoading()
+        }
+      })
+    }, function () {
+      console.log('err')
     })
+
 
     me.setData(d)
   },
 
   upLoadAudioCard(config) {
+
     const me = this
     const d = me.data
 
-    config.wishText = d.wordContent
-    config.wishType = "text"
     wx.showLoading({
       title:'正在生成卡片'
     })
+    config.wishType = "audio"
 
-    wx.request({
-      url: API.buildCard,
-      method: 'POST',
-      data: config,
-      success: res => {
-        console.log(res)
-        //把卡片塞到卡片列表中
-      },
-      complete: () =>{
-        wx.hideLoading()
-      }
+    me.fileUpload(d.dataUrl, {
+      keys: '',
+      mimeType: 'audio',
+      suffixes: 'mp3'
+    }, function (res) {
+      console.log(res)
+      config.wishUrl = res.resUrl
+      wx.request({
+        url: API.buildCard,
+        method: 'POST',
+        data: config,
+        success: res => {
+          console.log(res)
+          d.isAfterWrite = false
+          me.setData(d)
+          //把卡片塞到卡片列表中
+        },
+        complete: () =>{
+          wx.hideLoading()
+        }
+      })
+    }, function () {
+      console.log('err')
     })
-
     me.setData(d)
   },
 
@@ -139,25 +169,36 @@ module.exports.methods = {
     const me = this
     const d = me.data
 
-    config.wishText = d.wordContent
-    config.wishType = "text"
     wx.showLoading({
       title:'正在生成卡片'
     })
+    config.wishType = "video"
 
-    wx.request({
-      url: API.buildCard,
-      method: 'POST',
-      data: config,
-      success: res => {
-        console.log(res)
-        //把卡片塞到卡片列表中
-      },
-      complete: () =>{
-        wx.hideLoading()
-      }
+    me.fileUpload(d.dataUrl, {
+      keys: '',
+      mimeType: 'video',
+      suffixes: 'mp4'
+    }, function (res) {
+      console.log(res)
+      config.wishUrl = res.resUrl
+      console.log(config)
+      wx.request({
+        url: API.buildCard,
+        method: 'POST',
+        data: config,
+        success: res => {
+          console.log(res)
+          d.isAfterWrite = false
+          me.setData(d)
+          //把卡片塞到卡片列表中
+        },
+        complete: () =>{
+          wx.hideLoading()
+        }
+      })
+    }, function () {
+      console.log('err')
     })
-
     me.setData(d)
   },
 
@@ -171,23 +212,65 @@ module.exports.methods = {
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        d.imgUrl = res.tempFilePaths
-
-        me.fileUpload(d.imgUrl, {
-          keys: '',
-          mimeType: 'image',
-          suffixes: 'png,jpg,jpeg'
-        }, function(res) {
-          console.log(res)
-        }, function () {
-          console.log('err')
-        })
-
+        d.dataUrl = res.tempFilePaths[0]
+        d.isAfterWrite = true
+        me.setData(d)
       }
     })
-
     me.setData(d)
   },
+
+  chooseVideo() {
+    const me = this
+    const d = me.data
+
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 30,
+      camera: ['front','back'],
+      success: function (res) {
+        d.dataUrl = res.tempFilePath
+        d.isAfterWrite = true
+        me.setData(d)
+      }
+    })
+    me.setData(d)
+  },
+
+  startRecord() {
+    const me = this
+    const d = me.data
+    console.log('start')
+    d.recorderManager.start({format: 'mp3'})
+  },
+
+  stopRecord() {
+    const me = this
+    const d = me.data
+    console.log('stop')
+    d.recorderManager.stop()
+    d.isStart = false
+    d.isAfterWrite = true
+    me.setData(d)
+  },
+
+  reRecord() {
+    const me = this
+    const d = me.data
+    d.isStart = true
+    d.isAfterWrite = false
+    me.setData(d)
+    d.innerAudioContext.stop()
+  },
+
+  tryListen() {
+    const me = this
+    const d = me.data
+    d.innerAudioContext.src = d.dataUrl
+    me.setData(d)
+    d.innerAudioContext.play()
+  },
+
   xxxxxxxxxxxxxx() {
     const me = this
     const d = me.data
