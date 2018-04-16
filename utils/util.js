@@ -109,7 +109,7 @@ function fileUpload(filePath, data, succ, err) {
   }, 30000)
 
   wx.request({
-    url: util.config.url + '/api/getUploadInfo',
+    url: API.getUploadInfo,
     method: 'POST',
     data: data,
     success: function(jsonToken) {

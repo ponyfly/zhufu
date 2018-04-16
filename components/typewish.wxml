@@ -35,29 +35,31 @@
           <image class="theme-temp" src="/static/img/video-temp.png" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
           <view class="video-common">
-            <image class="video-bg" src="/static/img/video-01.png" alt=""></image>
-            <view class="upload-video"></view>
+            <block wx:if="{{!dataUrl}}">
+              <image class="video-bg" src="/static/img/video-01.png" alt=""></image>
+              <view class="upload-video" bindtap="chooseVideo"></view>
+            </block>
+            <video src="{{dataUrl}}" wx:if="{{dataUrl}}" objectFit="contain"></video>
           </view>
         </view>
         <view class="photo-container" wx:if="{{typeId == 4}}">
           <image class="theme-temp" src="/static/img/photo-temp.png" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
           <view class="photo-common">
-            <image class="photo-bg" src="/static/img/photo-01.png" alt=""></image>
-            <view class="upload-photo" bindtap="chooseImage"></view>
+            <block wx:if="{{!dataUrl}}">
+              <image class="photo-bg" src="/static/img/photo-01.png" alt=""></image>
+              <view class="upload-photo" bindtap="chooseImage"></view>
+            </block>
+            <image class="current-img" src="{{dataUrl}}" width="100%" mode="aspectFit" wx:if="{{dataUrl}}"></image>
           </view>
         </view>
-        <!--<typeaudio @getTempFilePath="getTempFilePath" :isAfterWirte.sync="isAfterWirte"></typeaudio>-->
-        <!--<typeword @getTypeWord="getTypeWord"></typeword>-->
-        <!--<typevideo></typevideo>-->
-        <!--<typeword></typeword>-->
       </view>
     </view>
     <view class="bottom">
       <image src="/static/img/bg-03.png" class="bg-bottom"></image>
       <view class="form-area">
         <image src="/static/img/cancel@2x.png" alt="" class="form-btn cancel" bindtap="hideType"></image>
-        <image src="{{isAfterWirte ? '/static/img/confirm-2@2x.png' : '/static/img/confirm@2x.png'}}" alt="" class="form-btn confirm" bindtap="uploadCard"></image>
+        <image src="{{isAfterWrite ? '/static/img/confirm-2@2x.png' : '/static/img/confirm@2x.png'}}" alt="" class="form-btn confirm" bindtap="uploadCard"></image>
       </view>
     </view>
   </view>

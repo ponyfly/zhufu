@@ -1,4 +1,3 @@
-//logs.js
 const util = require('../../utils/util')
 const API = util.API
 const type = require('../../components/type')
@@ -10,18 +9,36 @@ Page({
     indexPositoin: 50,
     start:1,
     round: 10,
+    wishTemplateId: '',
     wishId:'',
     isShowType: false,
     isAuthAllow: true,
+    recorderManager: '',
+    innerAudioContext: '',
     ...type.data
   },
 
-  onLoad: function(opts) {
+  onLoad: function (opts) {
     const me = this
     const d = me.data
-    me.getOpenId(function () {
-      me.getWishCards()
+    d.recorderManager = wx.getRecorderManager()
+    d.innerAudioContext = wx.createInnerAudioContext()
+    d.recorderManager.onStart(() => {
+      console.log('recorder start')
     })
+
+    d.recorderManager.onStop((res) => {
+      console.log('recorder stop')
+      const {tempFilePath} = res
+      d.dataUrl = tempFilePath
+      me.setData(d)
+      console.log(d.dataUrl)
+    })
+      me.getOpenId(function () {
+        me.getWishCards()
+      })
+    console.log(opts)
+    d.wishTemplateId = opts.wishTemplateId
     d.wishId = opts.wishId
 
     me.setData(d)
