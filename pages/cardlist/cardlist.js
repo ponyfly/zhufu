@@ -5,8 +5,8 @@ const type = require('../../components/type')
 
 Page({
   data: {
-    bannerIndex: 4,
-    bannerList: [1,2,3,4,5,6,7,8,9],
+    bannerIndex: 3,
+    bannerList: [],
     indexPositoin: 50,
     start:1,
     round: 10,
@@ -55,38 +55,6 @@ Page({
       },
       success:res=>{
         app.globalData.wishTempletCss = res.data.wishTempletCss
-        app.globalData.wishTempletCss = {
-          common: {
-            bgTop:'https://image.guang.j.cn/static/imgs/zhufu/temp1/step1-1.png',
-            bgMain:'https://image.guang.j.cn/static/imgs/zhufu/temp1/step1-3.png',
-          },
-          step1: {
-            bgBottom: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step1-5.png',
-            cardBg: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step1-4.png',
-            cardTopIcon: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step1-2.png',
-            cardInputBgColor: '#ffd0d1',
-            cardInputTextColor: '#f5989a'
-          },
-          step2: {
-            bgBottom: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-5.png',
-            bgText: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-1.png',
-            bgImage: '',
-            bgAudio: '',
-            bgVideo: '',
-          },
-          step3: {
-            bgText: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-1.png',
-            bgImage: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-4.png',
-            bgAudio: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-2.png',
-            bgVideo: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-3.png',
-            bgBottom: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-5.png',
-            bgCancel: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-6.png',
-            bgConfirm: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-7.png',
-            bgConfirmActive: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-8.png',
-            textInputBgColor: '#ffd0d1',
-            textInputColor: '#c17c7e'
-          }
-        }
         d.wishTempletCss = app.globalData.wishTempletCss
         me.setData(d)
       }
@@ -105,7 +73,7 @@ Page({
       console.log('recorder stop')
       const {tempFilePath} = res
       d.isStart = false
-      d.isAfterWrite = true
+      // d.isAfterWrite = true
       d.dataUrl = tempFilePath
       me.setData(d)
     })
@@ -124,10 +92,10 @@ Page({
   nextIndex() {
     const me = this
     const d = me.data
-    if(d.bannerIndex < d.bannerList.length-1){
+    if(d.bannerIndex < d.bannerList.length){
       d.bannerIndex++
+      me.setData(d)
     }
-    me.setData(d)
   },
   
   preIndex() {
@@ -162,10 +130,11 @@ Page({
       success: res => {
         const {initiator, wishCards, wishThemeImgUrl, cardsNum} = res.data
         d.initiator = initiator
-        d.wishCards = wishCards
+        d.wishCards = d.bannerList = [undefined, undefined, undefined, ...wishCards, undefined, undefined, undefined]
         d.wishThemeImgUrl = wishThemeImgUrl
         d.cardsNum = cardsNum
         me.setData(d)
+        console.log(d.bannerList)
       }
     })
   },

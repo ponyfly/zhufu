@@ -2,9 +2,25 @@
 <view class="banner-wrap">
 	<view class="banner">
 		<block class="t" wx:for="{{bannerList}}" wx:key="{{index}}">
-			<view class="banner-item {{index == bannerIndex ? 'banner-item-act': index > bannerIndex ? 'banner-item-right' : 'banner-item-left'}}" style="left:{{indexPositoin-(bannerIndex-index)*6}}%; z-index:{{bannerIndex<index ? 999- (index-bannerIndex): ''}}" data-index="{{index}}">{{item}}</view>
+			<view class="banner-item {{index == bannerIndex ? 'banner-item-act': index > bannerIndex ? 'banner-item-right' : 'banner-item-left'}}" style="left:{{indexPositoin-(bannerIndex-index)*6}}%; z-index:{{bannerIndex<index ? 999- (index-bannerIndex): ''}}" data-index="{{index}}">
+				<view wx:if="{{item.wishType === 'text'}}" class="card-content" style="background: url({{wishTempletCss.step2.bgText}}) no-repeat;background-size:cover;">
+					<image class="card-head"></image>
+					<image class="card-main"></image>
+					<view class="join-time"></view>
+				</view>
+
+
+				<view wx:if="{{item.wishType === 'img'}}" class="card-content card-image" style="background: url({{wishTempletCss.step2.bgImage}}) no-repeat;background-size:cover;">
+					<image class="bg-image" src="/static/img/step2-image.png"></image>
+					<image class="main-image" src="{{item.wishUrl}}"></image>
+				</view>
+
+
+				<view wx:if="{{item.wishType === 'audio'}}" class="card-content" style="background: url({{wishTempletCss.step2.bgAudio}}) no-repeat;background-size:cover;"></view>
+				<view wx:if="{{item.wishType === 'video'}}" class="card-content" style="background: url({{wishTempletCss.step2.bgVideo}}) no-repeat;background-size:cover;"></view>
+			</view>
 		</block>
 	</view>
 	<image src="/static/img/left@2x.png" class="left" bindtap="preIndex" wx:if="{{bannerIndex > 3}}"></image>
-	<image src="/static/img/right@2x.png" class="right" bindtap="nextIndex" wx:if="{{bannerList.length - bannerIndex > 4}}"></image>
+	<image src="/static/img/right@2x.png" class="right" bindtap="nextIndex" wx:if="{{bannerList.length - bannerIndex > 5}}"></image>
 </view>

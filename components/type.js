@@ -67,6 +67,13 @@ module.exports.methods = {
     const me = this
     const d = me.data
 
+    if(!d.wordContent) {
+      wx.showToast({
+        title: '请填写祝福语'
+      })
+      return
+    }
+
     config.wishText = d.wordContent
     config.wishType = "text"
     wx.showLoading({
@@ -80,6 +87,7 @@ module.exports.methods = {
       success: res => {
         console.log(res)
         d.isAfterWrite = false
+        d.typeId = -1
         me.setData(d)
         //把卡片塞到卡片列表中
       },
@@ -93,6 +101,13 @@ module.exports.methods = {
   upLoadImageCard(config) {
     const me = this
     const d = me.data
+
+    if(!d.dataUrl) {
+      wx.showToast({
+        title: '请选择图片'
+      })
+      return
+    }
 
     wx.showLoading({
       title:'正在生成卡片'
@@ -113,6 +128,7 @@ module.exports.methods = {
         success: res => {
           console.log(res)
           d.isAfterWrite = false
+          d.typeId = -1
           me.setData(d)
           //把卡片塞到卡片列表中
         },
@@ -133,6 +149,13 @@ module.exports.methods = {
     const me = this
     const d = me.data
 
+    if(!d.dataUrl) {
+      wx.showToast({
+        title: '请录音'
+      })
+      return
+    }
+
     wx.showLoading({
       title:'正在生成卡片'
     })
@@ -152,6 +175,7 @@ module.exports.methods = {
         success: res => {
           console.log(res)
           d.isAfterWrite = false
+          d.typeId = -1
           me.setData(d)
           //把卡片塞到卡片列表中
         },
@@ -168,6 +192,13 @@ module.exports.methods = {
   upLoadVideoCard(config) {
     const me = this
     const d = me.data
+
+    if(!d.dataUrl) {
+      wx.showToast({
+        title: '请选择视频'
+      })
+      return
+    }
 
     wx.showLoading({
       title:'正在生成卡片'
@@ -189,6 +220,7 @@ module.exports.methods = {
         success: res => {
           console.log(res)
           d.isAfterWrite = false
+          d.typeId = -1
           me.setData(d)
           //把卡片塞到卡片列表中
         },

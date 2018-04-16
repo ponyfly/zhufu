@@ -32,10 +32,8 @@
           <image class="theme-temp" src="{{wishTempletCss.step3.bgAudio}}" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
           <view class="video-common">
-            <block wx:if="{{!dataUrl}}">
-              <image class="video-bg" src="/static/img/video-01.jpg" alt=""></image>
-              <view class="upload-video" bindtap="chooseVideo"></view>
-            </block>
+            <image class="video-bg" src="/static/img/video-01.jpg" alt=""></image>
+            <view class="upload-video" bindtap="chooseVideo"></view>
             <video src="{{dataUrl}}" wx:if="{{dataUrl}}" objectFit="contain"></video>
           </view>
         </view>
@@ -43,10 +41,8 @@
           <image class="theme-temp" src="{{wishTempletCss.step3.bgImage}}" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
           <view class="photo-common">
-            <block wx:if="{{!dataUrl}}">
-              <image class="photo-bg" src="/static/img/photo-01.png" alt=""></image>
-              <view class="upload-photo" bindtap="chooseImage"></view>
-            </block>
+            <image class="photo-bg" src="/static/img/photo-01.png" alt=""></image>
+            <view class="upload-photo" bindtap="chooseImage"></view>
             <image class="current-img" src="{{dataUrl}}" width="100%" mode="aspectFit" wx:if="{{dataUrl}}"></image>
           </view>
         </view>
@@ -56,7 +52,7 @@
       <image src="{{wishTempletCss.step3.bgBottom}}" class="bg-bottom"></image>
       <view class="form-area">
         <image src="{{wishTempletCss.step3.bgCancel}}" alt="" class="form-btn cancel" bindtap="hideType"></image>
-        <image wx:if="{{isAfterWrite}}" src="{{wishTempletCss.step3.bgConfirm}}" alt="" class="form-btn confirm"></image>
+        <image wx:if="{{!isAfterWrite}}" src="{{wishTempletCss.step3.bgConfirm}}" alt="" class="form-btn confirm"></image>
         <image wx:else src="{{wishTempletCss.step3.bgConfirmActive}}" alt="" class="form-btn confirm" bindtap="uploadCard"></image>
       </view>
     </view>

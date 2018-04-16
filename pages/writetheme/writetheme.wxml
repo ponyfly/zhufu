@@ -1,7 +1,7 @@
 
   <view class="container" style="background:url({{wishTempletCss.common.bgMain}});background-size: 100%;">
     <view class="head">
-      <image src="{{wishTempletCss.common.bgTop}}?v=1" alt="" class="head-bg"></image>
+      <image src="{{wishTempletCss.common.bgTop}}" alt="" class="head-bg"></image>
       <view class="cake-wrap">
         <image src="{{wishTempletCss.step1.cardTopIcon}}" alt="" class="cake"></image>
       </view>

@@ -13,9 +13,9 @@ const birthDay = {
   step2: {
     bgBottom: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-5.png',
     bgText: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-1.png',
-    bgImage: '',
-    bgAudio: '',
-    bgVideo: '',
+    bgImage: "https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-8.png",
+    bgAudio: "https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-7.png",
+    bgVideo: "https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-7.png",
   },
   step3: {
     bgText: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step3-1.png',

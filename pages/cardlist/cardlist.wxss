@@ -375,8 +375,13 @@
 }
 .video-container .video-common video{
   position: absolute;
-  width:100%;
+  top:38rpx;
+  left:56rpx;
   z-index: 999;
+  width:512rpx;
+  height:346rpx;
+  transform:perspective(800px) rotateY(-18deg);
+
 }
 .video-container .video-common .video-bg {
   position: absolute;
@@ -426,7 +431,11 @@
 .photo-container .photo-common .current-img {
   position: absolute;
   z-index: 99;
-  width:100%;
+  width:512rpx;
+  height:384rpx;
+  transform:rotateZ(20deg);
+  top:149rpx;
+  left:61rpx;
 }
 .photo-container .photo-common .upload-photo {
   position: absolute;
@@ -510,7 +519,7 @@
   height: 684rpx;
   margin-left: -262rpx;
   transition: 1s;
-  background: #dd8;
+  background: linear-gradient(#fdfcfa, #f3e9d6); /* 标准语法 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -518,11 +527,34 @@
   border: 5rpx solid #000;
   border-radius: 20rpx;
 }
+.banner-item .card-content {
+  width:523rpx;
+  height:100%;
+  position: relative;
+  /*animation: snow 2s steps(15) infinite;*/
+}
+.banner-item .card-image .bg-image{
+  position: absolute;
+  top:158rpx;
+  left:18rpx;
+  width:476rpx;
+  height:446rpx;
+}
+.banner-item .card-image .main-image{
+  position:absolute;
+  z-index:99;
+  width:330rpx;
+  height:247rpx;
+  transform:rotateZ(20deg);
+  background-color:rgba(0,0,0,.4);
+  top:255rpx;
+  left:68rpx;
+}
 .banner-item-act {
   z-index: 999;
   opacity: 1;
   transform: rotateY(0);
-  background: #ddf;
+  background: #fff;
 }
 .banner-item-left {
   z-index: 9;
@@ -537,4 +569,8 @@
 }
 .b ._button {
   flex: 1;
+}
+@keyframes snow {
+  from {background-position: 0 0}
+  to {background-position: -7845rpx 0}
 }
