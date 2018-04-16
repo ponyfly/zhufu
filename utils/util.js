@@ -9,7 +9,7 @@ const api = {
   getMyWishes: 'https://pisces.j.cn/api/getMyWishes',
   buildWish: 'https://pisces.j.cn/api/buildWish',
   buildCard: 'https://pisces.j.cn/api/buildCard',
-  getUploadInfo: 'https://party-gate.j.cn/api/getUploadInfo'
+  getUploadInfo: 'https://piscestest.j.cn/api/getUploadInfo'
 }
 const apitest = {
   getOpenId: 'https://piscestest.j.cn/api/CommonFetchOpenIdByJSCode',
@@ -19,7 +19,7 @@ const apitest = {
   getMyWishes: 'https://piscestest.j.cn/api/getMyWishes',
   buildWish: 'https://piscestest.j.cn/api/buildWish',
   buildCard: 'https://piscestest.j.cn/api/buildCard',
-  getUploadInfo: 'https://test-party-gate.j.cn/api/getUploadInfo'
+  getUploadInfo: 'https://piscestest.j.cn/api/getUploadInfo'
 }
 
 const API = apitest

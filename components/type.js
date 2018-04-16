@@ -136,7 +136,7 @@ module.exports.methods = {
     wx.showLoading({
       title:'正在生成卡片'
     })
-    config.wishType = "audio"
+    config.wishType = "voice"
 
     me.fileUpload(d.dataUrl, {
       keys: '',
@@ -176,7 +176,7 @@ module.exports.methods = {
 
     me.fileUpload(d.dataUrl, {
       keys: '',
-      mimeType: 'video',
+      mimeType: 'pitchVideo',
       suffixes: 'mp4'
     }, function (res) {
       console.log(res)
@@ -240,18 +240,13 @@ module.exports.methods = {
   startRecord() {
     const me = this
     const d = me.data
-    console.log('start')
     d.recorderManager.start({format: 'mp3'})
   },
 
   stopRecord() {
     const me = this
     const d = me.data
-    console.log('stop')
     d.recorderManager.stop()
-    d.isStart = false
-    d.isAfterWrite = true
-    me.setData(d)
   },
 
   reRecord() {

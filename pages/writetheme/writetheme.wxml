@@ -1,23 +1,20 @@
 
-  <view class="container">
+  <view class="container" style="background:url({{wishTempletCss.common.bgMain}});background-size: 100%;">
     <view class="head">
-      <image src="/static/img/bg-head@2x.png" alt="" class="head-bg"></image>
+      <image src="{{wishTempletCss.common.bgTop}}?v=1" alt="" class="head-bg"></image>
       <view class="cake-wrap">
-        <image src="/static/img/icon-1@2x.png" alt="" class="cake-bg"></image>
-        <image src="/static/img/cake@2x.png" alt="" class="cake"></image>
+        <image src="{{wishTempletCss.step1.cardTopIcon}}" alt="" class="cake"></image>
       </view>
     </view>
     <view class="content-wrap">
       <view class="content">
-        <image src="/static/img/card@2x.png" alt="" class="card-bg"></image>
+        <image src="{{wishTempletCss.step1.cardBg}}" alt="" class="card-bg"></image>
         <view class="card-desc">请填写祝福主题</view>
-        <input class="inputarea" type="text" placeholder="祝你生日快乐么么哒" bindblur="setWishTitle" value="{{wishTitle}}"/>
+        <input class="inputarea" type="text" bindblur="setWishTitle" value="{{wishTitle}}" style="background-color: {{wishTempletCss.step1.cardInputBgColor}}; color: {{wishTempletCss.step1.cardInputTextColor}}" />
       </view>
     </view>
     <view class="submit-wrap">
-      <image class="submit-bg" src="/static/img/bg-bottom@2x.png" alt=""></image>
-      <view class="submit-content">
-        <image src="/static/img/submit@2x.png" alt="" class="submit-icon" bindtap="submitTheme"></image>
-      </view>
+      <image class="submit-bg" src="{{wishTempletCss.step1.bgBottom}}" alt=""></image>
+      <view class="submit-content" bindtap="submitTheme"></view>
     </view>
   </view>

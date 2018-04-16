@@ -11,19 +11,16 @@
       </view>
     </view>
     <view class="content-wrap">
-      <view class="common-bg bg-1"></view>
-      <view class="common-bg bg-2"></view>
-      <view class="common-bg bg-3"></view>
       <view class="common-bg bg-4">
         <view class="word-container" wx:if="{{typeId == 1}}">
-          <image class="theme-temp" src="/static/img/word-temp.png" alt=""></image>
+          <image class="theme-temp" src="{{wishTempletCss.step3.bgText}}" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
-          <textarea name="wishcontent" id="wisharea" cols="30" rows="10" maxlength="200" placeholder="输入你的祝福" wrap="hard" value="{{wordContent}}" bindinput="setContent"></textarea>
+          <textarea name="wishcontent" id="wisharea" cols="30" rows="10" maxlength="200" placeholder="输入你的祝福" wrap="hard" value="{{wordContent}}" style="background-color: {{wishTempletCss.step3.textInputBgColor}}; color: {{wishTempletCss.step3.textInputColor}};" bindinput="setContent"></textarea>
           <view class="desc">（ 最多可输入200字 )</view>
         </view>
         <view class="audio-container" wx:if="{{typeId == 2}}">
           <image class="audio-icon" src="/static/img/audio-1@2x.png" alt=""></image>
-          <image class="theme-temp" src="/static/img/bg-temp1.png" alt=""></image>
+          <image class="theme-temp" src="{{wishTempletCss.step3.bgAudio}}" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
           <image wx:if="{{isStart}}" class="audio-start" src="/static/img/audio-2@2x.png" alt="" bindtouchstart="startRecord" bindtouchend="stopRecord"></image>
           <view wx:if="{{!isStart}}" class="audio-end">
@@ -32,18 +29,18 @@
           </view>
         </view>
         <view class="video-container" wx:if="{{typeId == 3}}">
-          <image class="theme-temp" src="/static/img/video-temp.png" alt=""></image>
+          <image class="theme-temp" src="{{wishTempletCss.step3.bgAudio}}" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
           <view class="video-common">
             <block wx:if="{{!dataUrl}}">
-              <image class="video-bg" src="/static/img/video-01.png" alt=""></image>
+              <image class="video-bg" src="/static/img/video-01.jpg" alt=""></image>
               <view class="upload-video" bindtap="chooseVideo"></view>
             </block>
             <video src="{{dataUrl}}" wx:if="{{dataUrl}}" objectFit="contain"></video>
           </view>
         </view>
         <view class="photo-container" wx:if="{{typeId == 4}}">
-          <image class="theme-temp" src="/static/img/photo-temp.png" alt=""></image>
+          <image class="theme-temp" src="{{wishTempletCss.step3.bgImage}}" alt=""></image>
           <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
           <view class="photo-common">
             <block wx:if="{{!dataUrl}}">
@@ -56,10 +53,11 @@
       </view>
     </view>
     <view class="bottom">
-      <image src="/static/img/bg-03.png" class="bg-bottom"></image>
+      <image src="{{wishTempletCss.step3.bgBottom}}" class="bg-bottom"></image>
       <view class="form-area">
-        <image src="/static/img/cancel@2x.png" alt="" class="form-btn cancel" bindtap="hideType"></image>
-        <image src="{{isAfterWrite ? '/static/img/confirm-2@2x.png' : '/static/img/confirm@2x.png'}}" alt="" class="form-btn confirm" bindtap="uploadCard"></image>
+        <image src="{{wishTempletCss.step3.bgCancel}}" alt="" class="form-btn cancel" bindtap="hideType"></image>
+        <image wx:if="{{isAfterWrite}}" src="{{wishTempletCss.step3.bgConfirm}}" alt="" class="form-btn confirm"></image>
+        <image wx:else src="{{wishTempletCss.step3.bgConfirmActive}}" alt="" class="form-btn confirm" bindtap="uploadCard"></image>
       </view>
     </view>
   </view>

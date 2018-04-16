@@ -1,5 +1,4 @@
 <!--share.wxml-->
-<view class="top" style="height:200rpx;"></view>
 <view class="banner-wrap">
 	<view class="banner">
 		<block class="t" wx:for="{{bannerList}}" wx:key="{{index}}">
