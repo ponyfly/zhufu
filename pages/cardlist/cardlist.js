@@ -9,7 +9,7 @@ Page({
     bannerList: [],
     indexPositoin: 50,
     start:1,
-    round: 10,
+    round: 9,
     wishTemplateId: '',
     wishId:'',
     isShowType: false,
@@ -19,6 +19,7 @@ Page({
     wishTempletCss: null,
     initiator: '',
     wishCards: [],
+    avators:[],
     wishThemeImgUrl: '',
     cardsNum: 0,
     ...type.data
@@ -92,7 +93,13 @@ Page({
   nextIndex() {
     const me = this
     const d = me.data
-    if(d.bannerIndex < d.bannerList.length){
+    if(d.bannerIndex > d.bannerList.length-6) {
+      // d.start += 10
+      me.setData(d)
+      me.getWishCards()
+    }
+
+      if(d.bannerIndex < d.bannerList.length){
       d.bannerIndex++
       me.setData(d)
     }
@@ -110,6 +117,7 @@ Page({
   setIndex(e) {
     const me = this
     const d = me.data
+    if(d.bannerIndex === e.currentTarget.dataset.index) return
     d.bannerIndex = e.currentTarget.dataset.index
     me.setData(d)
   },
@@ -129,10 +137,14 @@ Page({
       },
       success: res => {
         const {initiator, wishCards, wishThemeImgUrl, cardsNum} = res.data
-        d.initiator = initiator
-        d.wishCards = d.bannerList = [undefined, undefined, undefined, ...wishCards, undefined, undefined, undefined]
-        d.wishThemeImgUrl = wishThemeImgUrl
-        d.cardsNum = cardsNum
+        if(!d.initiator) {
+          d.initiator = initiator
+          d.wishThemeImgUrl = wishThemeImgUrl
+          d.cardsNum = cardsNum
+        }
+        d.wishCards = d.wishCards.concat(wishCards)
+        d.wishCards = d.bannerList = [undefined, undefined, undefined, ...d.wishCards, undefined, undefined, undefined]
+        d.avators = d.wishCards.slice(0,-3)
         me.setData(d)
         console.log(d.bannerList)
       }

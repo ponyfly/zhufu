@@ -107,14 +107,15 @@
 }
 .container .list-wrap .content-wrap .joiner-container {
   position: absolute;
-  bottom:-42rpx;
+  bottom:0;
   z-index: 10;
   width: 100%;
   align-self: flex-end;
+  overflow-x: scroll;
 }
 .container .list-wrap .content-wrap .joiner-container .scroll-content {
-  overflow-x: scroll;
   white-space: nowrap;
+  transition: all 1s;
 }
 .container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item {
   margin-right: 36rpx;
@@ -123,6 +124,10 @@
 .container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item .joiner-pic {
   width: 80rpx;
   height: 80rpx;
+  border-radius: 50%;
+}
+.container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item .joiner-pic.active {
+  border:4rpx solid red;
 }
 .container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item .joiner-name {
   width: 80rpx;

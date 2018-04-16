@@ -12,16 +12,16 @@
         </view>
         <view class="cards-num">
           <view class="num-title">祝福数</view>
-          <view class="bum-content">6/{{cardsNum}}</view>
+          <view class="bum-content">{{bannerIndex-2}}/{{cardsNum}}</view>
         </view>
       </view>
       <view class="content-wrap">
         <include src="/components/touch.wxml"></include>
         <view class="joiner-container">
-          <view class="scroll-content">
-            <view class="scroll-item">
-              <image src="/static/img/joiner@2x.png" alt="" class="joiner-pic"></image>
-              <view class="joiner-name">小乔</view>
+          <view class="scroll-content" style="transform: translateX({{-(bannerIndex - 3)*116}}rpx)">
+            <view wx:for="{{avators}}" class="scroll-item" wx:key="{{index}}" data-index="{{index}}" bindtap="setIndex">
+              <image src="{{item.owerHeadPic}}" alt="" class="joiner-pic {{bannerIndex === index ? 'active' : ''}}"></image>
+              <view class="joiner-name">{{item.ownerName}}</view>
             </view>
           </view>
         </view>

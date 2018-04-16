@@ -56,8 +56,10 @@ Page({
 
     if(!d.wishTitle) {
       wx.showToast({
-        title: '请填写祝福主题'
+        title: '请填写祝福主题',
+        icon: 'none'
       })
+      return
     }
 
     wx.showLoading({
