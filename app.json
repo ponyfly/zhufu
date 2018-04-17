@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/cardlist/cardlist",
-    "pages/writetheme/writetheme"
+    "pages/writetheme/writetheme",
+    "pages/test/test"
   ],
   "window":{
     "backgroundTextStyle":"light",

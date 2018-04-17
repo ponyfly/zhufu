@@ -1,0 +1,5 @@
+<scroll-view scroll-left="150" scroll-x class="section">
+  <block wx:for="{{arr}}">
+    <view class="scroll-item">{{item}}</view>
+  </block>
+</scroll-view>

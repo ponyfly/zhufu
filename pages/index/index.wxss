@@ -19,6 +19,9 @@
   display: flex;
   justify-content: center;
 }
+.container .themes .audio-card {
+
+}
 .container .themes .item-wrap .theme-item {
   width: 320rpx;
   height: 460rpx;
@@ -54,17 +57,87 @@
 .container .join-list .item-wrap .join-item .content {
   width: 320rpx;
   height: 431rpx;
+  position: relative;
 }
 .container .join-list .item-wrap .join-item .content .bg-video {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width:100%;
+  height:434rpx;
+  box-shadow: 0 5rpx 10rpx rgba(0,0,0,.4);
   border-top-right-radius: 8rpx;
 }
+.container .join-list .item-wrap .join-item .content .audio-image {
+  position: absolute;
+  top:142rpx;
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:263rpx;
+  height:162rpx;
+}
+.container .join-list .item-wrap .join-item .content .audio-play {
+  position: absolute;
+  top:318rpx;
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:76rpx;
+  height:76rpx;
+}
+
+.container .join-list .item-wrap .join-item .content .video-image {
+  position: absolute;
+  top: 156rpx;
+  left:16rpx;
+  width:294rpx;
+  height:265rpx;
+}
+.container .join-list .item-wrap .join-item .content .video-poster {
+  position: absolute;
+  top:107rpx;
+  left:43rpx;
+  width:217rpx;
+  height:300rpx;
+  transform:perspective(800px) rotateY(-18deg);
+}
+
+.container .join-list .item-wrap .join-item .content .card-head {
+  position: absolute;
+  top:186rpx;
+  width:100%;
+  height:26rpx;
+}
+.container .join-list .item-wrap .join-item .content .card-main {
+  position: absolute;
+  top:209rpx;
+  width:100%;
+  height:222rpx;
+}
+
+.container .join-list .item-wrap .join-item .content .bg-image {
+  position: absolute;
+  top:152rpx;
+  left:18rpx;
+  width:300rpx;
+  height:280rpx;
+}
+.container .join-list .item-wrap .join-item .content .main-image {
+  position:absolute;
+  z-index:99;
+  width:208rpx;
+  height:156rpx;
+  transform:rotateZ(20deg);
+  background-color:rgba(0,0,0,.4);
+  top:215rpx;
+  left:51rpx;
+}
+
 .container .join-list .item-wrap .join-item .theme-title {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #5f3f08;
 }
 .container .tabbar {
   width: 100%;

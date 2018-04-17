@@ -57,6 +57,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #fff;
 }
 .container .list-wrap .head .cards-num .num-title {
   font-size: 20rpx;
@@ -81,6 +82,7 @@
 .container .list-wrap .content-wrap .create-wish .create-bg{
   width:100%;
   height:100%;
+  border-radius: 20rpx;
 }
 .container .list-wrap .content-wrap .create-wish .theme-title {
   position: absolute;

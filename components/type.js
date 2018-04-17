@@ -6,7 +6,8 @@ module.exports.data = {
   wordContent: '',
   dataUrl: '',
   isAfterWrite: false,
-  isStart: true
+  isStart: true,
+  newCard: {}
 }
 
 module.exports.methods = {
@@ -63,6 +64,23 @@ module.exports.methods = {
     me.setData(d)
   },
 
+  pushCardToList() {
+    const me = this
+    const d = me.data
+
+    d.newCard.isShow = true
+
+    if(d.cardsNum === 0) {
+      d.bannerList.splice(d.bannerIndex, 1, d.newCard)
+    } else{
+      d.bannerList.splice(d.bannerIndex, 0, d.newCard)
+      d.bannerIndex++
+    }
+    d.cardsNum++
+
+    me.setData(d)
+  },
+
   upLoadTextCard(config) {
     const me = this
     const d = me.data
@@ -89,8 +107,14 @@ module.exports.methods = {
         d.isAfterWrite = false
         d.typeId = -1
         d.hasCreated = true
-        me.setData(d)
+        d.wordContent = ''
+        d.dataUrl = ''
         //把卡片塞到卡片列表中
+        d.newCard = res.data
+        me.pushCardToList()
+
+        console.log(d.newCard)
+        me.setData(d)
       },
       complete: () =>{
         wx.hideLoading()
@@ -131,8 +155,11 @@ module.exports.methods = {
           d.isAfterWrite = false
           d.typeId = -1
           d.hasCreated = true
-          me.setData(d)
+          d.dataUrl = ''
           //把卡片塞到卡片列表中
+          d.newCard = res.data
+          me.pushCardToList()
+          me.setData(d)
         },
         complete: () =>{
           wx.hideLoading()
@@ -179,8 +206,11 @@ module.exports.methods = {
           d.isAfterWrite = false
           d.typeId = -1
           d.hasCreated = true
-          me.setData(d)
+          d.dataUrl = ''
           //把卡片塞到卡片列表中
+          d.newCard = res.data
+          me.pushCardToList()
+          me.setData(d)
         },
         complete: () =>{
           wx.hideLoading()
@@ -225,8 +255,11 @@ module.exports.methods = {
           d.isAfterWrite = false
           d.typeId = -1
           d.hasCreated = true
-          me.setData(d)
+          d.dataUrl = ''
           //把卡片塞到卡片列表中
+          d.newCard = res.data
+          me.pushCardToList()
+          me.setData(d)
         },
         complete: () =>{
           wx.hideLoading()

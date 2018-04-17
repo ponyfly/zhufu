@@ -49,6 +49,7 @@ Page({
       },
       success:res=>{
         d.myWishes = d.myWishes.concat(res.data.myWishes)
+        console.log(d.myWishes)
         me.setData(d)
       },
       complete: () => {

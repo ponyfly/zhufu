@@ -6,7 +6,7 @@ const type = require('../../components/type')
 Page({
   data: {
     bannerIndex: 3,
-    bannerList: [],
+    bannerList: [{isShow:true}, {isShow:true}, {isShow:true},{isShow:true}, {isShow:true}, {isShow:true}, {isShow:true}],
     indexPositoin: 50,
     start:1,
     round: 9,
@@ -23,7 +23,7 @@ Page({
     wishCards: [],
     avators:[],
     wishThemeImgUrl: '',
-    hasCreated: true,
+    hasCreated: false,
     cardsNum: 0,
     ...type.data
   },
@@ -153,15 +153,31 @@ Page({
     }
     if (d.bannerIndex < d.bannerList.length - 3) {
       d.bannerIndex++
-      me.setData(d)
+      me.setCardVisiable()
     }
+
+    me.setData(d)
   },
-  
+
+  setCardVisiable() {
+    const me = this
+    const d = me.data
+    for(let i = Math.max(d.bannerIndex-3,0); i< Math.min(d.bannerList.length,d.bannerIndex+3);i++){
+      if(Math.abs(d.bannerIndex - i) <= 1){
+        d.bannerList[i].isShow = true
+      }else{
+        d.bannerList[i].isShow = false
+      }
+    }
+    me.setData(d)
+  },
+
   preIndex() {
     const me = this
     const d = me.data
     if(d.bannerIndex > 3){
       d.bannerIndex--
+      me.setCardVisiable()
     }
     me.setData(d)
   },
@@ -169,6 +185,10 @@ Page({
   setIndex(e) {
     const me = this
     const d = me.data
+
+    d.bannerList[d.bannerIndex].isShow = false
+    d.bannerList[d.bannerIndex-1].isShow = false
+    d.bannerList[d.bannerIndex+1].isShow = false
     if(d.bannerIndex === e.currentTarget.dataset.index) return
     if (d.bannerIndex === d.bannerList.length - 7 && d.bannerIndex < d.cardsNum + 1) {
       d.start += d.batchSize + 1
@@ -176,6 +196,7 @@ Page({
       me.getWishCards()
     }
     d.bannerIndex = e.currentTarget.dataset.index
+    me.setCardVisiable()
     me.setData(d)
   },
 
@@ -196,14 +217,10 @@ Page({
         const {initiator, wishCards, cardsNum} = res.data
         d.initiator = initiator
         d.cardsNum = cardsNum
-        d.wishCards = d.wishCards.concat(wishCards)
-
-        if(!d.bannerList.length) {
-          d.wishCards = d.wishCards.length ? d.wishCards: [undefined]
-          d.bannerList = [undefined, undefined, undefined, ...d.wishCards, undefined, undefined, undefined]
-        } else {
-          d.bannerList.splice(-3, 0 ,...wishCards)
+        if(wishCards.length !== 0) {
+          d.bannerList.splice(-4, 1 ,...wishCards)
         }
+        d.bannerList[3].isShow = true
         d.avators = d.bannerList.slice(0,-3)
         me.setData(d)
       }
