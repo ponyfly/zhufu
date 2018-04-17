@@ -17,12 +17,13 @@ module.exports.methods = {
     d.typeId = -1
     d.wordContent = ''
     d.dataUrl = ''
+    d.isAfterWrite = false
+    d.isStart = true
     me.setData(d)
   },
   setContent(e) {
     const me = this
     const d = me.data
-    console.log(e)
     d.wordContent = e.detail.value
     if(d.wordContent) {
       d.isAfterWrite = true
@@ -71,9 +72,10 @@ module.exports.methods = {
     d.newCard.isShow = true
 
     if(d.cardsNum === 0) {
+      console.log(d.bannerIndex, d.bannerList, 11)
       d.bannerList.splice(d.bannerIndex, 1, d.newCard)
     } else{
-      d.bannerList.splice(d.bannerIndex, 0, d.newCard)
+      d.bannerList.splice(d.bannerIndex + 1, 0, d.newCard)
       d.bannerIndex++
     }
     d.cardsNum++

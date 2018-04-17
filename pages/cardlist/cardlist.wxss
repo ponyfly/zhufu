@@ -93,42 +93,6 @@
   width:522rpx;
   height:36rpx;
 }
-.container .list-wrap .content-wrap .stage {
-  height: 500rpx;
-  width: 100%;
-}
-.container .list-wrap .content-wrap .stage .banner {
-  height: 80%;
-  padding-top: 100rpx;
-  overflow: hidden;
-  position: relative;
-  -webkit-perspective: 400;
-}
-.container .list-wrap .content-wrap .stage .banner .banner-item {
-  position: absolute;
-  width: 400rpx;
-  height: 300rpx;
-  margin-left: -200rpx;
-  transition: 1s;
-  background: #dd8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.container .list-wrap .content-wrap .stage .banner .banner-item-act {
-  z-index: 999;
-  opacity: 1;
-  transform: rotateY(0) translateZ(140rpx);
-  background: #ddf;
-}
-.container .list-wrap .content-wrap .stage .banner .banner-item-left {
-  z-index: 9;
-  transform: rotateY(45deg);
-}
-.container .list-wrap .content-wrap .stage .banner .banner-item-right {
-  z-index: 9;
-  transform: rotateY(-45deg);
-}
 .container .list-wrap .content-wrap .joiner-container {
   position: absolute;
   bottom:0;
@@ -339,11 +303,11 @@
   height: 342rpx;
 }
 .audio-container .card-title {
-  width: 414rpx;
   height: 43rpx;
   position: absolute;
   top: 27%;
   left: 50%;
+  z-index: 2;
   transform: translateX(-50%);
 }
 .audio-container .audio-start {
@@ -395,11 +359,13 @@
   z-index: 2;
 }
 .video-container .card-title {
-  width: 414rpx;
   height: 43rpx;
   position: absolute;
+  z-index: 2;
   top: 266rpx;
-  left: 159rpx;
+  left: 0;
+  right:0;
+  margin:0 auto;
 }
 .video-container .video-common {
   position: absolute;
@@ -443,11 +409,13 @@
   z-index: 2;
 }
 .photo-container .card-title {
-  width: 414rpx;
-  height: 43rpx;
   position: absolute;
   top: 234rpx;
-  left: 159rpx;
+  z-index: 2;
+  left: 0;
+  right:0;
+  margin:0 auto;
+  height: 43rpx;
 }
 .photo-container .photo-common {
   position: absolute;
@@ -491,11 +459,13 @@
   z-index: 2;
 }
 .word-container .card-title {
-  width: 414rpx;
   height: 43rpx;
   position: absolute;
   top: 354rpx;
-  left: 179rpx;
+  left: 0;
+  right:0;
+  margin:0 auto;
+  z-index: 2;
 }
 .word-container #wisharea {
   position: absolute;
@@ -675,7 +645,6 @@
 }
 .banner-item-act {
   z-index: 999;
-  opacity: 1;
   transform: rotateY(0);
   background: #fff;
 }

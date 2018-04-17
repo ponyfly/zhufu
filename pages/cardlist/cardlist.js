@@ -20,10 +20,9 @@ Page({
     videoContext:'',
     wishTempletCss: null,
     initiator: '',
-    wishCards: [],
     avators:[],
     wishThemeImgUrl: '',
-    hasCreated: false,
+    hasCreated: true,
     cardsNum: 0,
     ...type.data
   },

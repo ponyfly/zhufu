@@ -5,7 +5,7 @@
       <view class="creater">
         <image src="/static/img/star@2x.png" alt="" class="star"></image>
         <view class="content">
-          本次祝福由<text class="creater-name">默默</text>发起
+          本次祝福由<text class="creater-name">{{initiator}}</text>发起
         </view>
         <image src="/static/img/star@2x.png" alt="" class="star"></image>
       </view>
@@ -14,14 +14,14 @@
       <view class="common-bg bg-4">
         <view class="word-container" wx:if="{{typeId == 1}}">
           <image class="theme-temp" src="{{wishTempletCss.step3.bgText}}" alt=""></image>
-          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <image class="card-title" src="{{wishThemeImgUrl}}" alt=""></image>
           <textarea name="wishcontent" id="wisharea" cols="30" rows="10" maxlength="200" placeholder="输入你的祝福" wrap="hard" value="{{wordContent}}" style="background-color: {{wishTempletCss.step3.textInputBgColor}}; color: {{wishTempletCss.step3.textInputColor}};" bindinput="setContent"></textarea>
           <view class="desc">（ 最多可输入200字 )</view>
         </view>
         <view class="audio-container" wx:if="{{typeId == 2}}">
           <image class="audio-icon" src="/static/img/audio-1@2x.png" alt=""></image>
           <image class="theme-temp" src="{{wishTempletCss.step3.bgAudio}}" alt=""></image>
-          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <image class="card-title" src="{{wishThemeImgUrl}}" alt=""></image>
           <image wx:if="{{isStart}}" class="audio-start" src="/static/img/audio-2@2x.png" alt="" bindtouchstart="startRecord" bindtouchend="stopRecord"></image>
           <view wx:if="{{!isStart}}" class="audio-end">
             <view class="re-record common-circle" bindtap="reRecord">重录</view>
@@ -30,7 +30,7 @@
         </view>
         <view class="video-container" wx:if="{{typeId == 3}}">
           <image class="theme-temp" src="{{wishTempletCss.step3.bgAudio}}" alt=""></image>
-          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <image class="card-title" src="{{wishThemeImgUrl}}" alt=""></image>
           <view class="video-common">
             <image class="video-bg" src="/static/img/video-01.jpg" alt=""></image>
             <view class="upload-video" bindtap="chooseVideo"></view>
@@ -39,7 +39,7 @@
         </view>
         <view class="photo-container" wx:if="{{typeId == 4}}">
           <image class="theme-temp" src="{{wishTempletCss.step3.bgImage}}" alt=""></image>
-          <image class="card-title" src="/static/img/card-title@2x.png" alt=""></image>
+          <image class="card-title" src="{{wishThemeImgUrl}}" alt=""></image>
           <view class="photo-common">
             <image class="photo-bg" src="/static/img/photo-01.png" alt=""></image>
             <view class="upload-photo" bindtap="chooseImage"></view>
