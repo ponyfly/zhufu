@@ -5,14 +5,14 @@
     </view>
   </view>
   <scroll-view class="join-list" scroll-y wx:else>
-    <!--<view class="item-wrap">-->
-      <!--<view class="join-item">-->
-        <!--<view class="content">-->
-          <!--<image class="bg-video" src="/static/img/bg-video.png" alt=""></image>-->
-        <!--</view>-->
-        <!--<view class="theme-title">完末生日祝愿</view>-->
-      <!--</view>-->
-    <!--</view>-->
+    <view wx:for="{{myWishes}}" class="item-wrap">
+      <view class="join-item">
+        <view class="content">
+          <image class="bg-video" src="/static/img/bg-video.png" alt=""></image>
+        </view>
+        <view class="theme-title">完末生日祝愿</view>
+      </view>
+    </view>
   </scroll-view>
   <view class="tabbar">
     <image class="tabbar-bg" src="/static/img/bg-bottom@2x.png" alt=""></image>

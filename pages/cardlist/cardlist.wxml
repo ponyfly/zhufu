@@ -12,13 +12,17 @@
         </view>
         <view class="cards-num">
           <view class="num-title">祝福数</view>
-          <view class="bum-content">{{bannerIndex-2}}/{{cardsNum}}</view>
+          <view class="bum-content">{{cardsNum ? bannerIndex-2 : 0}}/{{cardsNum}}</view>
         </view>
       </view>
       <view class="content-wrap">
         <include src="/components/touch.wxml"></include>
-        <view class="joiner-container">
-          <view class="scroll-content" style="transform: translateX({{-(bannerIndex - 3)*116}}rpx)">
+        <view class="create-wish" wx:if="{{!hasCreated}}">
+          <image class="create-bg" src="/static/img/step2-9.png"></image>
+          <image class="theme-title" src="{{wishThemeImgUrl}}"></image>
+        </view>
+        <view wx:if="{{avators.length > 4}}" class="joiner-container">
+          <view class="scroll-content" style="left:{{-(bannerIndex - 3)*116 - 18}}rpx">
             <view wx:for="{{avators}}" class="scroll-item" wx:key="{{index}}" data-index="{{index}}" bindtap="setIndex">
               <image src="{{item.owerHeadPic}}" alt="" class="joiner-pic {{bannerIndex === index ? 'active' : ''}}"></image>
               <view class="joiner-name">{{item.ownerName}}</view>
@@ -29,9 +33,9 @@
       <view class="submit-wrap">
         <image class="submit-bg" src="{{wishTempletCss.step2.bgBottom}}" alt=""></image>
         <view class="submit-content">
-          <view src="/static/img/create.png" alt="" class="create-wish" bindtap="createWish"></view>
-          <view src="/static/img/join-wish@2x.png" alt="" class="submit-icon" bindtap="joinWish"></view>
-          <view src="/static/img/share.png" alt="" class="share-wish" bindtap="shareWish"></view>
+          <view class="create-wish" bindtap="createWish"></view>
+          <view class="submit-icon" bindtap="joinWish"></view>
+          <button class="share-wish" open-type="share"></button>
         </view>
       </view>
     </view>

@@ -88,6 +88,7 @@ module.exports.methods = {
         console.log(res)
         d.isAfterWrite = false
         d.typeId = -1
+        d.hasCreated = true
         me.setData(d)
         //把卡片塞到卡片列表中
       },
@@ -129,6 +130,7 @@ module.exports.methods = {
           console.log(res)
           d.isAfterWrite = false
           d.typeId = -1
+          d.hasCreated = true
           me.setData(d)
           //把卡片塞到卡片列表中
         },
@@ -176,6 +178,7 @@ module.exports.methods = {
           console.log(res)
           d.isAfterWrite = false
           d.typeId = -1
+          d.hasCreated = true
           me.setData(d)
           //把卡片塞到卡片列表中
         },
@@ -221,6 +224,7 @@ module.exports.methods = {
           console.log(res)
           d.isAfterWrite = false
           d.typeId = -1
+          d.hasCreated = true
           me.setData(d)
           //把卡片塞到卡片列表中
         },
