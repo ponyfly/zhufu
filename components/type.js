@@ -70,15 +70,21 @@ module.exports.methods = {
     const me = this
     const d = me.data
 
+    console.log(d.avators)
+    const userInfo = wx.getStorageSync('userInfo')
     d.newCard.isShow = true
-
+    d.newCard.order = d.bannerIndex - 2
+    console.log(d.bannerList)
     if(d.cardsNum === 0) {
-      console.log(d.bannerIndex, d.bannerList, 11)
       d.bannerList.splice(d.bannerIndex, 1, d.newCard)
     } else{
       d.bannerList.splice(d.bannerIndex + 1, 0, d.newCard)
       d.bannerIndex++
     }
+    d.avators.splice(d.bannerIndex - 5 >= 0 ? (d.bannerIndex - 5) : 3, 0, {
+      owerHeadPic:userInfo.avatarUrl,
+      ownerName:userInfo.nickName
+    })
     d.cardsNum++
 
     me.setData(d)

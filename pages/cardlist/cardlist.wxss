@@ -518,8 +518,9 @@
 .banner {
   height: 100%;
   position: relative;
-  -webkit-perspective: 400;
+  -webkit-perspective: 800rpx;
   perspective-origin: center center;
+  -webkit-transform: translate3d(0,0,0);
 }
 .banner-item {
   position: absolute;
@@ -536,10 +537,10 @@
   border-radius: 20rpx;
 }
 .banner-item .card-content {
-  width:523rpx;
-  height:100%;
+  width:524rpx;
+  height:684rpx;
   position: relative;
-  /*animation: snow 2s steps(15) infinite;*/
+  animation: snow 2s steps(30) infinite;
 }
 .banner-item .card-text{
 }
@@ -645,7 +646,7 @@
 }
 .banner-item-act {
   z-index: 999;
-  transform: rotateY(0);
+  transform: rotateY(0) scale(.88) translateZ(100rpx);
   background: #fff;
 }
 .banner-item-left {
@@ -664,5 +665,5 @@
 }
 @keyframes snow {
   from {background-position: 0 0}
-  to {background-position: -7845rpx 0}
+  to {background-position: -15720rpx 0}
 }

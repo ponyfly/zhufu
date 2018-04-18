@@ -4,7 +4,7 @@
     <block class="t">
       <view wx:for="{{bannerList}}" wx:key="{{item.order}}"
             class="banner-item {{index == bannerIndex ? 'banner-item-act': index > bannerIndex ? 'banner-item-right' : 'banner-item-left'}}"
-            style="left:{{indexPositoin-(bannerIndex-index)*6}}%; z-index:{{bannerIndex<index ? 999- (index-bannerIndex): ''}}"
+            style="left:{{indexPositoin-(bannerIndex-index)*6}}%; z-index:{{bannerIndex<index ? 999- (index-bannerIndex): (999 - bannerIndex+index)}}"
             data-index="{{index}}" data-id="{{item.order}}">
         <view style="position:absolute;top: 0;width: 100%;height: 100%;" wx:if="{{item.isShow}}">
           <view wx:if="{{item.wishType === 'text'}}" class="card-content card-text"

@@ -21,7 +21,7 @@
           <image class="create-bg" src="{{wishTempletCss.step2.bgDefault}}"></image>
           <image class="theme-title" src="{{wishThemeImgUrl}}"></image>
         </view>
-        <scroll-view scroll-x  scroll-left="{{((bannerIndex - 3)*116 + 18)/2}}" scroll-with-animation wx:if="{{avators.length > 4}}" class="joiner-container">
+        <scroll-view scroll-x  scroll-left="{{((bannerIndex - 3)*116 + 18)/2}}" scroll-with-animation wx:if="{{avators.length > 3}}" class="joiner-container">
           <view class="scroll-content">
 
             <block wx:for="{{avators}}" wx:key="{{index}}">

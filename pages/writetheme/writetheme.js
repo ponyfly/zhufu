@@ -31,6 +31,15 @@ Page({
 
   },
 
+  inputHandler(e) {
+    if(e.detail.value.length === 9) {
+      wx.showToast({
+        title: '最多输入14个字',
+        icon: 'none'
+      })
+    }
+  },
+
   getWishTempletCss() {
     const me = this
     const d = me.data

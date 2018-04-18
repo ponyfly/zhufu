@@ -1,7 +1,7 @@
 const app = getApp()
 const util = require('../../utils/util')
-const type = require('../../components/type')
 const API = util.API
+const type = require('../../components/type')
 
 Page({
   data: {
@@ -22,7 +22,7 @@ Page({
     initiator: '',
     avators:[],
     wishThemeImgUrl: '',
-    hasCreated: false,
+    hasCreated: true,
     cardsNum: 0,
     ...type.data
   },
@@ -31,8 +31,21 @@ Page({
     console.log(opts)
     const me = this
     const d = me.data
+    /*if(opts.wishCardOrder) {
+      d.isShare = true
+      d.hasCreated = true
+
+      d.wishCardOrder = parseInt(opts.wishCardOrder)
+      d.leftStart = Math.max(parseInt(opts.wishCardOrder)-10, 1)
+
+
+      for(let i = 1; i< opts.wishCardOrder; i++) {
+        d.bannerList.splice(3,0,{isShow:false})
+      }
+      d.bannerIndex = parseInt(opts.wishCardOrder) -1
+    }*/
     d.wishTemplateId = opts.wishTemplateId
-    d.wishId = opts.wishId
+    d.wishId = parseInt(opts.wishId)
     d.wishThemeImgUrl = opts.wishThemeImgUrl
     if (app.globalData.wishTempletCss) {
       d.wishTempletCss = app.globalData.wishTempletCss
@@ -145,13 +158,13 @@ Page({
   nextIndex() {
     const me = this
     const d = me.data
-    if (d.bannerIndex === d.bannerList.length - 7 && d.bannerIndex < d.cardsNum + 1) {
-      d.start += d.batchSize + 1
-      me.setData(d)
-      me.getWishCards()
-    }
-    if (d.bannerIndex < d.bannerList.length - 3) {
+    if (d.bannerList.length - d.bannerIndex > 3) {
       d.bannerIndex++
+      if (d.bannerIndex === d.bannerList.length - 7 && d.bannerIndex < d.cardsNum + 1) {
+        d.start += d.batchSize + 1
+        me.setData(d)
+        // me.getWishCards()
+      }
       me.setCardVisiable()
     }
 
@@ -220,12 +233,16 @@ Page({
           d.bannerList.splice(-4, 1 ,...wishCards)
         }
         d.bannerList[3].isShow = true
-        d.avators = d.bannerList.slice(0,-3)
+        d.avators = wishCards.length !== 0 ? d.bannerList.slice(0,-3) : d.bannerList.slice(0,3)
         me.setData(d)
       }
     })
   },
   createWish() {
+    const me = this
+    const d = me.data
+    d.hasCreated = false
+    me.setData(d)
     wx.navigateTo({
       url: '/pages/index/index'
     })
@@ -278,9 +295,10 @@ Page({
     const me = this
     const d = me.data
 
+    const wishCardOrder = d.bannerList[d.bannerIndex].order
     return {
       title: '这个太逗了！快看看！',
-      path: '/pages/cardlist/cardlist?wishId='+ d.wishId +'&wishTemplateId=' + d.wishTemplateId + '&wishThemeImgUrl=' + d.wishThemeImgUrl,
+      path: '/pages/cardlist/cardlist?wishId='+ d.wishId +'&wishTemplateId=' + d.wishTemplateId + '&wishThemeImgUrl=' + d.wishThemeImgUrl + '&wishCardOrder=' + wishCardOrder,
       imageUrl: '/static/img/wx-share.jpg',
       success() {
         console.log('分享成功')

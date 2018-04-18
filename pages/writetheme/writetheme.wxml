@@ -10,7 +10,7 @@
       <view class="content">
         <image src="{{wishTempletCss.step1.cardBg}}" alt="" class="card-bg"></image>
         <view class="card-desc">请填写祝福主题</view>
-        <input class="inputarea" type="text" bindblur="setWishTitle" value="{{wishTitle}}" style="background-color: {{wishTempletCss.step1.cardInputBgColor}}; color: {{wishTempletCss.step1.cardInputTextColor}}" />
+        <input class="inputarea" type="text" bindblur="setWishTitle" bindinput="inputHandler" maxlength="9" value="{{wishTitle}}" style="background-color: {{wishTempletCss.step1.cardInputBgColor}}; color: {{wishTempletCss.step1.cardInputTextColor}}" />
       </view>
     </view>
     <view class="submit-wrap">

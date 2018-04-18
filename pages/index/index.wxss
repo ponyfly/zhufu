@@ -94,10 +94,10 @@
 }
 .container .join-list .item-wrap .join-item .content .video-poster {
   position: absolute;
-  top:107rpx;
+  top:175rpx;
   left:43rpx;
   width:217rpx;
-  height:300rpx;
+  height:155rpx;
   transform:perspective(800px) rotateY(-18deg);
 }
 

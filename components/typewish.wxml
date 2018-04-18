@@ -15,8 +15,8 @@
         <view class="word-container" wx:if="{{typeId == 1}}">
           <image class="theme-temp" src="{{wishTempletCss.step3.bgText}}" alt=""></image>
           <image class="card-title" src="{{wishThemeImgUrl}}" alt=""></image>
-          <textarea name="wishcontent" id="wisharea" cols="30" rows="10" maxlength="200" placeholder="输入你的祝福" wrap="hard" value="{{wordContent}}" style="background-color: {{wishTempletCss.step3.textInputBgColor}}; color: {{wishTempletCss.step3.textInputColor}};" bindinput="setContent"></textarea>
-          <view class="desc">（ 最多可输入200字 )</view>
+          <textarea name="wishcontent" id="wisharea" cols="30" rows="10" maxlength="60" placeholder="输入你的祝福" wrap="hard" value="{{wordContent}}" style="background-color: {{wishTempletCss.step3.textInputBgColor}}; color: {{wishTempletCss.step3.textInputColor}};" bindinput="setContent"></textarea>
+          <view class="desc">（ 最多可输入60字 )</view>
         </view>
         <view class="audio-container" wx:if="{{typeId == 2}}">
           <image class="audio-icon" src="/static/img/audio-1@2x.png" alt=""></image>
