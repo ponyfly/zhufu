@@ -18,7 +18,7 @@
       <view class="content-wrap">
         <include src="/components/touch.wxml"></include>
         <view class="create-wish" wx:if="{{!hasCreated}}">
-          <image class="create-bg" src="/static/img/step2-9.png"></image>
+          <image class="create-bg" src="{{wishTempletCss.step2.bgDefault}}"></image>
           <image class="theme-title" src="{{wishThemeImgUrl}}"></image>
         </view>
         <scroll-view scroll-x  scroll-left="{{((bannerIndex - 3)*116 + 18)/2}}" scroll-with-animation wx:if="{{avators.length > 4}}" class="joiner-container">

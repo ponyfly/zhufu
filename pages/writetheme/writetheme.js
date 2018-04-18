@@ -82,6 +82,8 @@ Page({
       success:res => {
         wx.hideLoading()
         console.log(res)
+        d.wishTitle = ''
+        me.setData(d)
         wx.navigateTo({
           url: '/pages/cardlist/cardlist?wishId=' + res.data.wishId + '&wishTemplateId=' +res.data.wishTemplateId + '&wishThemeImgUrl=' +res.data.wishThemeImgUrl
         })

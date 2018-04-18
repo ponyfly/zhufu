@@ -1,7 +1,7 @@
 const app = getApp()
 const util = require('../../utils/util')
-const API = util.API
 const type = require('../../components/type')
+const API = util.API
 
 Page({
   data: {
@@ -22,7 +22,7 @@ Page({
     initiator: '',
     avators:[],
     wishThemeImgUrl: '',
-    hasCreated: true,
+    hasCreated: false,
     cardsNum: 0,
     ...type.data
   },

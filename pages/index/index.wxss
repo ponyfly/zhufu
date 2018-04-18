@@ -138,6 +138,7 @@
   justify-content: center;
   align-items: center;
   color: #5f3f08;
+  overflow: hidden;
 }
 .container .tabbar {
   width: 100%;

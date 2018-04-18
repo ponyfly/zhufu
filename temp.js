@@ -11,6 +11,7 @@ const birthDay = {
     cardInputTextColor: '#f5989a'
   },
   step2: {
+    bgDefault: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-9.png',
     bgBottom: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-5.png',
     bgText: 'https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-1.png',
     bgImage: "https://image.guang.j.cn/static/imgs/zhufu/temp1/step2-8.png",

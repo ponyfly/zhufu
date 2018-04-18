@@ -39,7 +39,8 @@ module.exports.methods = {
       owerHeadPic: userInfo.avatarUrl,
       ownerName: userInfo.nickName,
       wishTemplateId: d.wishTemplateId,
-      wishid: d.wishId,
+      wishId: d.wishId,
+      wishCardBg: '',
       wishText: '',
       wishType: '',
       wishUrl: '',
@@ -96,6 +97,7 @@ module.exports.methods = {
 
     config.wishText = d.wordContent
     config.wishType = "text"
+    config.wishCardBg = d.wishTempletCss.step3.bgText
     wx.showLoading({
       title:'正在生成卡片'
     })
@@ -140,6 +142,7 @@ module.exports.methods = {
       title:'正在生成卡片'
     })
     config.wishType = "img"
+    config.wishCardBg = d.wishTempletCss.step3.bgImage
 
     me.fileUpload(d.dataUrl, {
       keys: '',
@@ -191,6 +194,7 @@ module.exports.methods = {
       title:'正在生成卡片'
     })
     config.wishType = "voice"
+    config.wishCardBg = d.wishTempletCss.step3.bgAudio
 
     me.fileUpload(d.dataUrl, {
       keys: '',
@@ -239,6 +243,7 @@ module.exports.methods = {
       title:'正在生成卡片'
     })
     config.wishType = "video"
+    config.wishCardBg = d.wishTempletCss.step3.bgVideo
 
     me.fileUpload(d.dataUrl, {
       keys: '',

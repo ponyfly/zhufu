@@ -9,7 +9,7 @@
       <view wx:if="{{item.wishType === 'voice'}}" class="item-wrap">
         <view class="join-item">
           <view class="content">
-            <image class="bg-video" src="/static/img/video-temp.png" alt=""></image>
+            <view class="bg-video" style="background: url({{item.wishCardBg}}) no-repeat;background-size: cover" src="/static/img/step3-1.png"></view>
             <image class="audio-image" src="/static/img/audio-1@2x.png"></image>
             <image class="audio-play" src="/static/img/audio-play.png" data-index="{{index}}" bindtap="playAudioCard"></image>
           </view>
@@ -19,7 +19,7 @@
       <view wx:if="{{item.wishType === 'video'}}" class="item-wrap">
         <view class="join-item">
           <view class="content">
-            <image class="bg-video" src="/static/img/video-temp.png" alt=""></image>
+            <view class="bg-video" style="background: url({{item.wishCardBg}}) no-repeat;background-size: cover" src="/static/img/step3-1.png"></view>
             <image class="video-image" src="/static/img/video-01.jpg"></image>
             <image class="video-poster" mode="aspectFit" src="{{item.videoImg}}" bindtap="playVideoCard"></image>
           </view>
@@ -29,7 +29,7 @@
       <view wx:if="{{item.wishType === 'text'}}" class="item-wrap">
         <view class="join-item">
           <view class="content">
-            <image class="bg-video" src="/static/img/video-temp.png" alt=""></image>
+            <view class="bg-video" style="background: url({{item.wishCardBg}}) no-repeat;background-size: cover" src="/static/img/step3-1.png"></view>
             <image class="card-head" src="{{item.wishThemeImgUrl}}"></image>
             <image class="card-main" mode="aspectFit" src="{{item.wishUrl}}"></image>
           </view>
@@ -39,7 +39,7 @@
       <view wx:if="{{item.wishType === 'img'}}" class="item-wrap">
         <view class="join-item">
           <view class="content">
-            <image class="bg-video" src="/static/img/video-temp.png" alt=""></image>
+            <view class="bg-video" style="background: url({{item.wishCardBg}}) no-repeat;background-size: cover" src="/static/img/step3-1.png"></view>
             <image class="bg-image" src="/static/img/step2-image.png"></image>
             <image class="main-image" mode="aspectFit" src="{{item.wishUrl}}" bindtap="previewImage" data-index="{{index}}"></image>
           </view>
