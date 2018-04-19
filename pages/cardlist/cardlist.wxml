@@ -17,20 +17,20 @@
       </view>
       <view class="content-wrap">
         <include src="/components/touch.wxml"></include>
-        <view class="create-wish" wx:if="{{!hasCreated}}">
+        <view class="create-wish" wx:if="{{showCreatePanel}}">
           <image class="create-bg" src="{{wishTempletCss.step2.bgDefault}}"></image>
           <image class="theme-title" src="{{wishThemeImgUrl}}"></image>
         </view>
-        <scroll-view scroll-x  scroll-left="{{((bannerIndex - 3)*116 + 18)/2}}" scroll-with-animation wx:if="{{avators.length > 3}}" class="joiner-container">
+        <scroll-view scroll-x  scroll-left="{{((bannerIndex)*116)/2}}" scroll-with-animation wx:if="{{avators.length > 3}}" class="joiner-container">
           <view class="scroll-content">
 
             <block wx:for="{{avators}}" wx:key="{{index}}">
-              <view class="scroll-item">
-                <image src="{{item.owerHeadPic}}" data-index="{{index}}" class="joiner-pic {{bannerIndex === index ? 'active' : ''}}" bindtap="setIndex" wx:if="{{index >= 3}}"></image>
+              <view class="scroll-item {{bannerIndex  === index ? 'act' : ''}}">
+                <image src="{{item.owerHeadPic}}" data-order="{{item.order}}" class="joiner-pic " bindtap="setIndex" wx:if="{{item.owerHeadPic}}"></image>
                 <view class="joiner-name">{{item.ownerName}}</view>
               </view>
             </block>
-
+          <view style="display:inline-block;width: 300rpx;height: 80rpx;"></view>
           </view>
         </scroll-view>
       </view>

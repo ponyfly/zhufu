@@ -91,25 +91,27 @@
   right:0;
   margin:0 auto;
   width:522rpx;
-  height:36rpx;
+  height:50rpx;
 }
 .container .list-wrap .content-wrap .joiner-container {
   position: absolute;
   bottom:0;
   z-index: 10;
-  width: 100%;
+  width: 750rpx;
   height:130rpx;
-  align-self: flex-end;
-  overflow-x: scroll;
 }
 .container .list-wrap .content-wrap .joiner-container .scroll-content {
   white-space: nowrap;
-  transition: all 1s;
-  position: absolute;
+  display: block;
+  box-sizing: border-box;
   height:100%;
+  padding:0 330rpx;
+  position: relative;
 }
 .container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item {
+
   margin-right: 36rpx;
+  /*width:80rpx;*/
   display: inline-block;
 }
 .container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item .joiner-pic {
@@ -117,7 +119,7 @@
   height: 80rpx;
   border-radius: 50%;
 }
-.container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item .joiner-pic.active {
+.container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item.act .joiner-pic {
   border:4rpx solid red;
 }
 .container .list-wrap .content-wrap .joiner-container .scroll-content .scroll-item .joiner-name {
@@ -592,8 +594,11 @@
 .banner-item .card-text .card-head{
   position: absolute;
   top:263rpx;
-  width:100%;
-  height:36rpx;
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:522rpx;
+  height:50rpx;
 }
 .banner-item .card-text .card-main{
   position: absolute;

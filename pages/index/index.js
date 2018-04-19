@@ -49,7 +49,6 @@ Page({
       },
       success:res=>{
         d.myWishes = d.myWishes.concat(res.data.myWishes)
-        console.log(d.myWishes)
         me.setData(d)
       },
       complete: () => {
@@ -99,8 +98,21 @@ Page({
       me.setData(d)
 
     })
-
     me.setData(d)
+  },
+  goToCardList(e) {
+    const me = this
+    const d = me.data
+    const index = e.currentTarget.dataset.index
+    const curWish = d.myWishes[index]
+    console.log(curWish)
+    wx.navigateTo({
+      url: '/pages/cardlist/cardlist?wishId='+ curWish.wishId +'&wishTemplateId=' + curWish.wishTemplateId+ '&wishCardOrder=' + curWish.order + '&wishThemeImgUrl=' + encodeURIComponent(curWish.wishThemeImgUrl)
+    })
+
+    /*
+    *
+    * */
   },
   ...util.methods
 })

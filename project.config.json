@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -45,7 +45,7 @@
 					"id": 1,
 					"name": "卡片列表",
 					"pathName": "pages/cardlist/cardlist",
-					"query": "wishId=70&wishTemplateId=1&wishThemeImgUrl=https://weappstatic1.j.cn/image/pisces/180417/1517/471a322420e9452f.png"
+					"query": "toCreateCard=false&wishId=70&wishTemplateId=1&wishThemeImgUrl=https://weappstatic1.j.cn/image/pisces/180417/1517/471a322420e9452f.png"
 				},
 				{
 					"id": -1,
@@ -57,7 +57,7 @@
 					"id": 3,
 					"name": "分享后",
 					"pathName": "pages/cardlist/cardlist",
-					"query": "wishId=70&wishTemplateId=1&wishCardOrder=23&wishThemeImgUrl=https://weappstatic1.j.cn/image/pisces/180417/1517/471a322420e9452f.png"
+					"query": "toCreateCard=false&wishId=70&wishTemplateId=1&wishCardOrder=23&wishThemeImgUrl=https://weappstatic1.j.cn/image/pisces/180417/1517/471a322420e9452f.png"
 				}
 			]
 		}

@@ -34,7 +34,7 @@ Page({
   inputHandler(e) {
     if(e.detail.value.length === 9) {
       wx.showToast({
-        title: '最多输入14个字',
+        title: '最多输入9个字',
         icon: 'none'
       })
     }
@@ -93,8 +93,8 @@ Page({
         console.log(res)
         d.wishTitle = ''
         me.setData(d)
-        wx.navigateTo({
-          url: '/pages/cardlist/cardlist?wishId=' + res.data.wishId + '&wishTemplateId=' +res.data.wishTemplateId + '&wishThemeImgUrl=' +res.data.wishThemeImgUrl
+        wx.redirectTo({
+          url: '/pages/cardlist/cardlist?toCreateCard=true&wishId=' + res.data.wishId + '&wishTemplateId=' +res.data.wishTemplateId + '&wishThemeImgUrl=' +res.data.wishThemeImgUrl
         })
       }
     })

@@ -9,8 +9,9 @@ Page({
     bannerList: [{isShow:true}, {isShow:true}, {isShow:true},{isShow:true}, {isShow:true}, {isShow:true}, {isShow:true}],
     indexPositoin: 50,
     start:1,
-    round: 9,
-    batchSize: 9,
+    batchSize: 20,
+    leftCardOrder: 1,
+    rightCardOrder: 1,
     wishTemplateId: '',
     wishId:'',
     isShowType: false,
@@ -22,9 +23,12 @@ Page({
     initiator: '',
     avators:[],
     wishThemeImgUrl: '',
-    hasCreated: true,
+    showCreatePanel: false,
     cardsNum: 0,
     firstGetCards: true,
+    isShare: false,
+    loadDirection: '',
+    isLeftEnd:false,
     ...type.data
   },
 
@@ -32,22 +36,34 @@ Page({
     console.log(opts)
     const me = this
     const d = me.data
-    /*if(opts.wishCardOrder) {
-      d.isShare = true
-      d.hasCreated = true
+    if(opts.toCreateCard === 'true') {
+      d.showCreatePanel = true
+    }
+    if(opts.wishCardOrder) {
+      // d.isShare = true
 
       d.wishCardOrder = parseInt(opts.wishCardOrder)
-      d.leftStart = Math.max(parseInt(opts.wishCardOrder)-10, 1)
 
+      d.leftCardOrder = Math.max(d.wishCardOrder - 10, 1)
+      d.rightCardOrder = d.wishCardOrder + 10
 
-      for(let i = 1; i< opts.wishCardOrder; i++) {
+      //塞空数据
+      for(let i = 1; i< d.wishCardOrder; i++) {
         d.bannerList.splice(3,0,{isShow:false})
       }
-      d.bannerIndex = parseInt(opts.wishCardOrder) -1
-    }*/
+      d.bannerIndex = parseInt(opts.wishCardOrder) + 2
+      console.log(d.bannerIndex)
+    } else {
+      d.leftCardOrder = 1
+      d.rightCardOrder = 20
+    }
+
+
+
     d.wishTemplateId = opts.wishTemplateId
     d.wishId = parseInt(opts.wishId)
-    d.wishThemeImgUrl = opts.wishThemeImgUrl
+    d.wishThemeImgUrl = decodeURIComponent(opts.wishThemeImgUrl)
+    //获取模板样式
     if (app.globalData.wishTempletCss) {
       d.wishTempletCss = app.globalData.wishTempletCss
     } else {
@@ -58,7 +74,10 @@ Page({
     me.initInnerVideoContext()
     me.initRecorderManager()
     me.getOpenId(function () {
-      me.getWishCards()
+      me.getWishCards(d.loadDirection, {
+        batchSize: 20,
+        start: d.leftCardOrder
+      })
     })
   },
 
@@ -160,24 +179,94 @@ Page({
     const me = this
     const d = me.data
 
-    if (d.bannerIndex === d.bannerList.length - 7 && (d.start + d.batchSize + 1) < d.cardsNum) {
+/*    if (d.bannerIndex === d.bannerList.length - 7 && (d.start + d.batchSize + 1) < d.cardsNum) {
       d.start += d.batchSize + 1
       me.setData(d)
       me.getWishCards()
-    }
+    }*/
 
     if (d.bannerList.length - d.bannerIndex > 3) {
       d.bannerIndex++
-      me.setCardVisiable()
+      me.setIndex()
     }
 
     me.setData(d)
   },
 
+  preIndex() {
+    const me = this
+    const d = me.data
+    if(d.bannerIndex > 3){
+      d.bannerIndex--
+      me.setIndex()
+    }
+    me.setData(d)
+  },
+
+  setIndex(e) {
+    console.log(e)
+    const me = this
+    const d = me.data
+
+    //如果点击自己，return
+    // if(d.bannerIndex === e.currentTarget.dataset.index) return
+    //设置原来index隐藏
+    d.bannerList[d.bannerIndex].isShow = false
+    d.bannerList[d.bannerIndex-1].isShow = false
+    d.bannerList[d.bannerIndex+1].isShow = false
+    try{
+      d.bannerIndex = e.currentTarget.dataset.order + 2
+      me.setData(d)
+    }catch (err){
+
+    }
+
+    //
+    /*if (d.bannerIndex <= d.bannerList.length - 8 && (d.start + d.batchSize + 1) < d.cardsNum) {
+      d.start += d.batchSize + 1
+      me.setData(d)
+      me.getWishCards({
+        batchSize: d.batchSize,
+        start: d.start
+      })
+    }*/
+
+    if(e!='push') {
+      //判断向左预加载
+      if(!d.isLeftEnd) {
+        if(d.bannerIndex - (d.leftCardOrder + 2) < 5) {
+          d.loadDirection = 'left'
+
+          const start = d.leftCardOrder - 1
+          me.getWishCards(d.loadDirection, {
+            batchSize: -d.batchSize,
+            start: start
+          })
+        }
+      }
+      //判断向右预加载
+      if(d.bannerList.length-d.bannerIndex-3 < 5) {
+        d.loadDirection = 'right'
+
+        const start = d.bannerList[d.bannerList.length - 4].order + 1
+        me.getWishCards(d.loadDirection, {
+          batchSize: d.batchSize,
+          start: start
+        })
+      }
+
+    }else {
+    }
+
+    me.setCardVisiable()
+    me.setData(d)
+  },
   setCardVisiable() {
     const me = this
     const d = me.data
-    for(let i = Math.max(d.bannerIndex-3,0); i< Math.min(d.bannerList.length,d.bannerIndex+3);i++){
+    console.log(d.bannerIndex)
+    for(let i = Math.max(d.bannerIndex-3,0); i< d.bannerList.length;i++){
+
       if(Math.abs(d.bannerIndex - i) <= 1){
         d.bannerList[i].isShow = true
       }else{
@@ -187,61 +276,59 @@ Page({
     me.setData(d)
   },
 
-  preIndex() {
-    const me = this
-    const d = me.data
-    if(d.bannerIndex > 3){
-      d.bannerIndex--
-      me.setCardVisiable()
-    }
-    me.setData(d)
-  },
-
-  setIndex(e) {
-    const me = this
-    const d = me.data
-
-    d.bannerList[d.bannerIndex].isShow = false
-    d.bannerList[d.bannerIndex-1].isShow = false
-    d.bannerList[d.bannerIndex+1].isShow = false
-    if(d.bannerIndex === e.currentTarget.dataset.index) return
-    if (d.bannerIndex === d.bannerList.length - 7 && d.bannerIndex < d.cardsNum + 1) {
-      d.start += d.batchSize + 1
-      me.setData(d)
-      me.getWishCards()
-    }
-    d.bannerIndex = e.currentTarget.dataset.index
-    me.setCardVisiable()
-    me.setData(d)
-  },
-
-  getWishCards() {
+  getWishCards(direction, config) {
     const me = this
     const d = me.data
     const openId = wx.getStorageSync('openId');
+
+    Object.assign(config, {
+      openId,
+      wishId: d.wishId
+    })
     wx.request({
       url: API.getWishCards,
       method: 'POST',
-      data: {
-        openId: openId,
-        batchSize: d.batchSize,
-        start: d.start,
-        wishId: d.wishId,
-      },
+      data: config,
       success: res => {
         const {initiator, wishCards, cardsNum} = res.data
         d.initiator = initiator
         d.cardsNum = cardsNum
         if(wishCards.length !== 0) {
-          if(d.firstGetCards) {
-            d.bannerList.splice(-4, 1 ,...wishCards)
+          /*if(d.firstGetCards) {
+            if(d.isShare) {
+              d.bannerList.splice(d.bannerIndex - d.round, d.round + 1, ...wishCards)
+              console.log(d.bannerList)
+            } else {
+              d.bannerList.splice(-4, 1 ,...wishCards)
+            }
             d.firstGetCards = false
           } else {
             d.bannerList.splice(-3, 0 ,...wishCards)
+          }*/
+          // if(d.bannerList.length === 7) {
+          //   d.bannerList.splice(3,1)
+          // }
+
+          if(direction === 'left') {
+            if(wishCards[0].order === 1) {
+              d.isLeftEnd = true
+            }
+            d.bannerList.splice(wishCards[0].order + 2, wishCards.length, ...wishCards)
+            d.leftCardOrder = wishCards[0].order
+          } else if(direction === 'right'){
+            d.bannerList.splice(-3, 0, ...wishCards)
+          } else {
+            d.bannerList.splice(wishCards[0].order + 2, d.wishCardOrder-d.leftCardOrder+1, ...wishCards)
+            d.leftCardOrder = wishCards[0].order
           }
+          d.avators = d.bannerList.slice(0,-3)
+         /* d.avators = d.avators.filter((avator) => {
+            return avator.owerHeadPic
+          })*/
         }
-        d.bannerList[3].isShow = true
-        d.avators = wishCards.length !== 0 ? d.bannerList.slice(0,-3) : d.bannerList.slice(0,3)
+        d.bannerList[d.bannerIndex].isShow = true
+        // d.avators = wishCards.length !== 0 ? d.bannerList.slice(0,-3) : d.bannerList.slice(0,3)
+
         me.setData(d)
       }
     })
@@ -249,7 +336,7 @@ Page({
   createWish() {
     const me = this
     const d = me.data
-    d.hasCreated = false
+    d.showCreatePanel = false
     me.setData(d)
     wx.navigateTo({
       url: '/pages/index/index'

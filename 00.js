@@ -1,0 +1,25 @@
+1
+joinTime
+  "2018-04-16 10"
+order
+  12
+videoImg
+  ""
+wishCardBg
+  ""
+wishCardId
+  14
+wishCss
+{}
+wishId
+  70
+wishTemplateId
+  1
+wishTheme
+  "gfdafds"
+wishThemeImgUrl
+  "htt//timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523425562836&di=6f12f524e06202271c1f4b76498fbf9a&imgtype=0&src=http%3A%2F%2Fimg.mp.sohu.com%2Fupload%2F20170611%2Fd0a1a45a22f24d64bf6d530fc80cd2bc.png"
+wishType
+  "voice"
+wishUrl
+  "htt//weappstatic1.j.cn/audio/party/180416/1124/a601712acfcc4308.mp3"

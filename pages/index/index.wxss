@@ -36,12 +36,15 @@
   bottom: 120rpx;
   left:0;
 }
-.container .join-list .item-wrap {
- display: inline-block;
-  vertical-align: top;
-  width: 50%;
-  padding-top: 20rpx;
-  padding-bottom: 10rpx;
+.container .join-list .item-box {
+  display:inline-block;
+  vertical-align:top;
+  width:50%;
+  padding-top:20rpx;
+  padding-bottom:10rpx;
+}
+.container .join-list .item-box .item-wrap {
+ width: 100%;
 }
 .container .join-list .item-wrap .join-item {
   width: 320rpx;

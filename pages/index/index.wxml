@@ -5,7 +5,7 @@
     </view>
   </view>
   <scroll-view class="join-list" scroll-y wx:else>
-    <block wx:for="{{myWishes}}" wx:key="{{index}}">
+    <view wx:for="{{myWishes}}" bindtap="goToCardList" data-index="{{index}}" wx:key="{{index}}" class="item-box">
       <view wx:if="{{item.wishType === 'voice'}}" class="item-wrap">
         <view class="join-item">
           <view class="content">
@@ -46,7 +46,7 @@
           <view class="theme-title">{{item.wishTheme}}</view>
         </view>
       </view>
-    </block>
+    </view>
   </scroll-view>
   <view class="tabbar">
     <image class="tabbar-bg" src="/static/img/bg-bottom@2x.png" alt=""></image>

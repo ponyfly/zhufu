@@ -66,28 +66,30 @@ module.exports.methods = {
     me.setData(d)
   },
 
-  pushCardToList() {
+  pushCardToList(res) {
     const me = this
     const d = me.data
-
-    console.log(d.avators)
-    const userInfo = wx.getStorageSync('userInfo')
-    d.newCard.isShow = true
-    d.newCard.order = d.bannerIndex - 2
-    console.log(d.bannerList)
-    if(d.cardsNum === 0) {
-      d.bannerList.splice(d.bannerIndex, 1, d.newCard)
-    } else{
-      d.bannerList.splice(d.bannerIndex + 1, 0, d.newCard)
-      d.bannerIndex++
+    console.log(res)
+    const userInfo = wx.getStorageSync('userInfo');
+    res.data.owerHeadPic = userInfo.avatarUrl
+    res.data.ownerName = userInfo.nickName
+    res.data.isShow = true
+    if(d.avators.length === 0) {
+      d.bannerList.splice(-4,1,res.data)
+    } else {
+      d.bannerList.splice(-3,0,res.data)
     }
-    d.avators.splice(d.bannerIndex - 5 >= 0 ? (d.bannerIndex - 5) : 3, 0, {
+
+    d.avators.push({
       owerHeadPic:userInfo.avatarUrl,
       ownerName:userInfo.nickName
     })
-    d.cardsNum++
+
+    d.bannerIndex = d.avators.length -1 + 3
 
     me.setData(d)
+    me.setIndex('push')
+
   },
 
   upLoadTextCard(config) {
@@ -116,12 +118,12 @@ module.exports.methods = {
         console.log(res)
         d.isAfterWrite = false
         d.typeId = -1
-        d.hasCreated = true
+        d.showCreatePanel = false
         d.wordContent = ''
         d.dataUrl = ''
         //把卡片塞到卡片列表中
         d.newCard = res.data
-        me.pushCardToList()
+        me.pushCardToList(res)
 
         console.log(d.newCard)
         me.setData(d)
@@ -165,11 +167,11 @@ module.exports.methods = {
           console.log(res)
           d.isAfterWrite = false
           d.typeId = -1
-          d.hasCreated = true
+          d.showCreatePanel = false
           d.dataUrl = ''
           //把卡片塞到卡片列表中
           d.newCard = res.data
-          me.pushCardToList()
+          me.pushCardToList(res)
           me.setData(d)
         },
         complete: () =>{
@@ -217,11 +219,11 @@ module.exports.methods = {
           console.log(res)
           d.isAfterWrite = false
           d.typeId = -1
-          d.hasCreated = true
+          d.showCreatePanel = false
           d.dataUrl = ''
           //把卡片塞到卡片列表中
           d.newCard = res.data
-          me.pushCardToList()
+          me.pushCardToList(res)
           me.setData(d)
         },
         complete: () =>{
@@ -267,11 +269,11 @@ module.exports.methods = {
           console.log(res)
           d.isAfterWrite = false
           d.typeId = -1
-          d.hasCreated = true
+          d.showCreatePanel = false
           d.dataUrl = ''
           //把卡片塞到卡片列表中
           d.newCard = res.data
-          me.pushCardToList()
+          me.pushCardToList(res)
           me.setData(d)
         },
         complete: () =>{
