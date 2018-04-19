@@ -24,6 +24,7 @@ Page({
     wishThemeImgUrl: '',
     hasCreated: true,
     cardsNum: 0,
+    firstGetCards: true,
     ...type.data
   },
 
@@ -158,13 +159,15 @@ Page({
   nextIndex() {
     const me = this
     const d = me.data
+
+    if (d.bannerIndex === d.bannerList.length - 7 && (d.start + d.batchSize + 1) < d.cardsNum) {
+      d.start += d.batchSize + 1
+      me.setData(d)
+      me.getWishCards()
+    }
+
     if (d.bannerList.length - d.bannerIndex > 3) {
       d.bannerIndex++
-      if (d.bannerIndex === d.bannerList.length - 7 && d.bannerIndex < d.cardsNum + 1) {
-        d.start += d.batchSize + 1
-        me.setData(d)
-        // me.getWishCards()
-      }
       me.setCardVisiable()
     }
 
@@ -230,7 +233,12 @@ Page({
         d.initiator = initiator
         d.cardsNum = cardsNum
         if(wishCards.length !== 0) {
-          d.bannerList.splice(-4, 1 ,...wishCards)
+          if(d.firstGetCards) {
+            d.bannerList.splice(-4, 1 ,...wishCards)
+            d.firstGetCards = false
+          } else {
+            d.bannerList.splice(-3, 0 ,...wishCards)
+          }
         }
         d.bannerList[3].isShow = true
         d.avators = wishCards.length !== 0 ? d.bannerList.slice(0,-3) : d.bannerList.slice(0,3)
