@@ -85,7 +85,7 @@ module.exports.methods = {
       ownerName:userInfo.nickName
     })
 
-    d.bannerIndex = d.avators.length -1 + 3
+    d.bannerIndex = d.avators.length -1
 
     me.setData(d)
     me.setIndex('push')

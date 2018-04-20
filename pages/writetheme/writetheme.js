@@ -98,8 +98,6 @@ Page({
         })
       }
     })
-
-
     me.setData(d)
   }
 })

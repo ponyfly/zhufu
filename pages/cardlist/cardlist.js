@@ -294,21 +294,6 @@ Page({
         d.initiator = initiator
         d.cardsNum = cardsNum
         if(wishCards.length !== 0) {
-          /*if(d.firstGetCards) {
-            if(d.isShare) {
-              d.bannerList.splice(d.bannerIndex - d.round, d.round + 1, ...wishCards)
-              console.log(d.bannerList)
-            } else {
-              d.bannerList.splice(-4, 1 ,...wishCards)
-            }
-            d.firstGetCards = false
-          } else {
-            d.bannerList.splice(-3, 0 ,...wishCards)
-          }*/
-          // if(d.bannerList.length === 7) {
-          //   d.bannerList.splice(3,1)
-          // }
-
           if(direction === 'left') {
             if(wishCards[0].order === 1) {
               d.isLeftEnd = true
@@ -322,9 +307,9 @@ Page({
             d.leftCardOrder = wishCards[0].order
           }
           d.avators = d.bannerList.slice(0,-3)
-         /* d.avators = d.avators.filter((avator) => {
-            return avator.owerHeadPic
-          })*/
+          /* d.avators = d.avators.filter((avator) => {
+             return avator.owerHeadPic
+           })*/
         }
         d.bannerList[d.bannerIndex].isShow = true
         // d.avators = wishCards.length !== 0 ? d.bannerList.slice(0,-3) : d.bannerList.slice(0,3)
